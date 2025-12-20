@@ -81,27 +81,8 @@ const BookingForm = () => {
         return;
       }
 
-      // Save booking to database
-      const { error: dbError } = await supabase
-        .from('bookings')
-        .insert({
-          pickup_location: formData.pickupLocation,
-          dropoff_location: formData.dropoffLocation,
-          booking_date: formData.date,
-          booking_time: formData.time,
-          passengers: parseInt(formData.passengers),
-          customer_name: formData.name,
-          customer_phone: formData.phone,
-          customer_email: formData.email,
-        });
-
-      if (dbError) {
-        console.error('Database error:', dbError);
-        throw new Error('Nepodarilo sa uložiť rezerváciu');
-      }
-
-      // Send email notifications with reCAPTCHA token
-      const { error: emailError } = await supabase.functions.invoke('send-booking-notification', {
+      // All booking logic handled by edge function (reCAPTCHA verification + DB insert + email)
+      const { data, error } = await supabase.functions.invoke('send-booking-notification', {
         body: {
           customerName: formData.name,
           customerEmail: formData.email,
@@ -115,9 +96,14 @@ const BookingForm = () => {
         },
       });
 
-      if (emailError) {
-        console.error('Email error:', emailError);
-        // Don't throw - booking was saved, just email failed
+      if (error) {
+        console.error('Booking error:', error);
+        throw new Error(error.message || 'Nepodarilo sa odoslať rezerváciu');
+      }
+
+      // Check for error in response body
+      if (data?.error) {
+        throw new Error(data.error);
       }
 
       toast({
