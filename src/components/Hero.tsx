@@ -17,10 +17,10 @@ const Hero = () => {
         <img
           src={heroImage}
           alt="Luxusné VIP vozidlo"
-          className="w-full h-full object-cover object-center md:object-center"
+          className="w-full h-full object-cover md:object-center"
           style={{ objectPosition: 'calc(50% - 70px) center' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70 md:via-background/90 md:to-background/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </div>
 

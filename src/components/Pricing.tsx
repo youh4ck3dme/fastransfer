@@ -70,11 +70,18 @@ const Pricing = () => {
           >
             <h3 className="text-xl font-serif font-bold text-foreground mb-4">Ceny city transferov</h3>
             <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden transition-all duration-300 hover:shadow-gold hover:border-primary/50">
-              <div className="grid grid-cols-4 gap-4 p-4 bg-secondary/30 text-sm font-semibold text-muted-foreground">
+              {/* Desktop header */}
+              <div className="hidden sm:grid grid-cols-4 gap-2 sm:gap-4 p-3 sm:p-4 bg-secondary/30 text-xs sm:text-sm font-semibold text-muted-foreground">
                 <span>Odkiaľ</span>
                 <span>Kam</span>
                 <span>Čas</span>
                 <span>Cena</span>
+              </div>
+              {/* Mobile header */}
+              <div className="sm:hidden grid grid-cols-3 gap-2 p-3 bg-secondary/30 text-xs font-semibold text-muted-foreground">
+                <span>Trasa</span>
+                <span>Čas</span>
+                <span className="text-right">Cena</span>
               </div>
               {cityRoutes.map((route, index) => (
                 <motion.div
@@ -83,12 +90,21 @@ const Pricing = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.03 }}
-                  className="grid grid-cols-4 gap-4 p-4 border-t border-border/50 hover:bg-secondary/20 transition-colors"
+                  className="border-t border-border/50 hover:bg-secondary/20 transition-colors"
                 >
-                  <span className="text-foreground font-medium">{route.from}</span>
-                  <span className="text-muted-foreground">{route.to}</span>
-                  <span className="text-muted-foreground">{route.time}</span>
-                  <span className="text-primary font-bold">{route.price} €</span>
+                  {/* Desktop row */}
+                  <div className="hidden sm:grid grid-cols-4 gap-2 sm:gap-4 p-3 sm:p-4">
+                    <span className="text-foreground font-medium text-sm">{route.from}</span>
+                    <span className="text-muted-foreground text-sm truncate">{route.to}</span>
+                    <span className="text-muted-foreground text-sm">{route.time}</span>
+                    <span className="text-primary font-bold text-sm">{route.price} €</span>
+                  </div>
+                  {/* Mobile row */}
+                  <div className="sm:hidden grid grid-cols-3 gap-2 p-3">
+                    <span className="text-foreground font-medium text-xs">{route.from} → {route.to}</span>
+                    <span className="text-muted-foreground text-xs">{route.time}</span>
+                    <span className="text-primary font-bold text-xs text-right">{route.price} €</span>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -103,11 +119,18 @@ const Pricing = () => {
           >
             <h3 className="text-xl font-serif font-bold text-foreground mb-4">Ceny letiskových transferov</h3>
             <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden transition-all duration-300 hover:shadow-gold hover:border-primary/50">
-              <div className="grid grid-cols-4 gap-4 p-4 bg-secondary/30 text-sm font-semibold text-muted-foreground">
+              {/* Desktop header */}
+              <div className="hidden sm:grid grid-cols-4 gap-2 sm:gap-4 p-3 sm:p-4 bg-secondary/30 text-xs sm:text-sm font-semibold text-muted-foreground">
                 <span>Odkiaľ</span>
                 <span>Kam</span>
                 <span>Čas</span>
                 <span>Cena</span>
+              </div>
+              {/* Mobile header */}
+              <div className="sm:hidden grid grid-cols-3 gap-2 p-3 bg-secondary/30 text-xs font-semibold text-muted-foreground">
+                <span>Trasa</span>
+                <span>Čas</span>
+                <span className="text-right">Cena</span>
               </div>
               {airportRoutes.map((route, index) => (
                 <motion.div
@@ -116,12 +139,21 @@ const Pricing = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.03 }}
-                  className="grid grid-cols-4 gap-4 p-4 border-t border-border/50 hover:bg-secondary/20 transition-colors"
+                  className="border-t border-border/50 hover:bg-secondary/20 transition-colors"
                 >
-                  <span className="text-foreground font-medium">{route.from}</span>
-                  <span className="text-muted-foreground">{route.to}</span>
-                  <span className="text-muted-foreground">{route.time}</span>
-                  <span className="text-primary font-bold">{route.price} €</span>
+                  {/* Desktop row */}
+                  <div className="hidden sm:grid grid-cols-4 gap-2 sm:gap-4 p-3 sm:p-4">
+                    <span className="text-foreground font-medium text-sm">{route.from}</span>
+                    <span className="text-muted-foreground text-sm truncate">{route.to}</span>
+                    <span className="text-muted-foreground text-sm">{route.time}</span>
+                    <span className="text-primary font-bold text-sm">{route.price} €</span>
+                  </div>
+                  {/* Mobile row */}
+                  <div className="sm:hidden grid grid-cols-3 gap-2 p-3">
+                    <span className="text-foreground font-medium text-xs">{route.from} → {route.to}</span>
+                    <span className="text-muted-foreground text-xs">{route.time}</span>
+                    <span className="text-primary font-bold text-xs text-right">{route.price} €</span>
+                  </div>
                 </motion.div>
               ))}
             </div>

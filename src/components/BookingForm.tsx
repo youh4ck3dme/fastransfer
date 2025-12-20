@@ -251,7 +251,7 @@ const BookingForm = () => {
                   name="passengers"
                   value={formData.passengers}
                   onChange={handleChange}
-                  className="w-full h-12 rounded-lg bg-secondary/50 border border-border/50 focus:border-primary px-4 text-foreground"
+                  className="w-full h-12 rounded-lg bg-secondary/50 border border-border/50 focus:border-primary px-4 text-foreground appearance-none cursor-pointer"
                   required
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
