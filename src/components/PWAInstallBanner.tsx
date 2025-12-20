@@ -60,39 +60,43 @@ const PWAInstallBanner = () => {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -100, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="fixed bottom-6 left-6 z-50 max-w-xs"
+          className="fixed bottom-4 left-4 z-50"
         >
-          <div className="glass-effect gold-border rounded-2xl p-4 shadow-elegant">
-            {/* Close button */}
-            <button
-              onClick={handleDismiss}
-              className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-secondary flex items-center justify-center hover:bg-muted transition-colors gold-border"
-              aria-label="Zatvoriť"
-            >
-              <X className="w-3 h-3 text-muted-foreground" />
-            </button>
+          <div className="neon-snake-border p-[2px]">
+            <div className="bg-background/95 backdrop-blur-md rounded-xl p-2.5 relative">
+              {/* Close button */}
+              <button
+                onClick={handleDismiss}
+                className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-secondary flex items-center justify-center hover:bg-muted transition-colors border border-border"
+                aria-label="Zatvoriť"
+              >
+                <X className="w-2.5 h-2.5 text-muted-foreground" />
+              </button>
 
-            <div className="flex items-start gap-3">
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center flex-shrink-0">
-                <Download className="w-6 h-6 text-primary-foreground" />
-              </div>
+              <div className="flex items-center gap-2">
+                {/* Icon */}
+                <div className="w-8 h-8 rounded-lg bg-gradient-gold flex items-center justify-center flex-shrink-0">
+                  <Download className="w-4 h-4 text-primary-foreground" />
+                </div>
 
-              {/* Content */}
-              <div className="flex-1 min-w-0">
-                <h4 className="font-montserrat font-semibold text-foreground text-sm mb-1">
-                  Nainštalovať aplikáciu
-                </h4>
-                <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
-                  Pridajte FastTransfer na domovskú obrazovku pre rýchlejší prístup.
-                </p>
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-montserrat font-semibold text-foreground text-[10px] leading-tight">
+                    Inštalovať
+                  </h4>
+                  <p className="text-[8px] text-muted-foreground leading-tight">
+                    Pridať na plochu
+                  </p>
+                </div>
+
+                {/* Install button */}
                 <Button
                   onClick={handleInstall}
                   size="sm"
-                  className="w-full bg-gradient-gold hover:opacity-90 text-primary-foreground font-medium"
+                  className="h-7 px-2.5 text-[10px] bg-gradient-gold hover:opacity-90 text-primary-foreground font-medium"
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  Inštalovať
+                  <Download className="w-3 h-3 mr-1" />
+                  OK
                 </Button>
               </div>
             </div>
