@@ -44,7 +44,7 @@ const Testimonials = () => {
           <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
             Referencie
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             Čo hovoria naši
             <span className="text-gradient-gold"> klienti</span>
           </h2>
@@ -71,7 +71,7 @@ const Testimonials = () => {
                 </div>
 
                 {/* Content */}
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed text-sm sm:text-base">
                   "{testimonial.content}"
                 </p>
 
@@ -83,8 +83,8 @@ const Testimonials = () => {
                     </span>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="font-semibold text-foreground tracking-tight">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground tracking-normal">{testimonial.role}</p>
                   </div>
                 </div>
               </div>

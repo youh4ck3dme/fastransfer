@@ -51,11 +51,11 @@ const Pricing = () => {
           <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
             Transparentné ceny
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             Cenník
             <span className="text-gradient-gold"> populárnych trás</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             Fixné ceny bez skrytých poplatkov. Cena zahŕňa vozidlo, vodiča a všetky poplatky.
           </p>
         </motion.div>
@@ -68,7 +68,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl font-serif font-bold text-foreground mb-4">Ceny city transferov</h3>
+            <h3 className="text-xl font-bold tracking-tight text-foreground mb-4">Ceny city transferov</h3>
             <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden transition-all duration-300 hover:shadow-gold hover:border-primary/50">
               {/* Desktop header */}
               <div className="hidden sm:grid grid-cols-4 gap-2 sm:gap-4 p-3 sm:p-4 bg-secondary/30 text-xs sm:text-sm font-semibold text-muted-foreground">
@@ -117,7 +117,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-xl font-serif font-bold text-foreground mb-4">Ceny letiskových transferov</h3>
+            <h3 className="text-xl font-bold tracking-tight text-foreground mb-4">Ceny letiskových transferov</h3>
             <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden transition-all duration-300 hover:shadow-gold hover:border-primary/50">
               {/* Desktop header */}
               <div className="hidden sm:grid grid-cols-4 gap-2 sm:gap-4 p-3 sm:p-4 bg-secondary/30 text-xs sm:text-sm font-semibold text-muted-foreground">
@@ -173,7 +173,7 @@ const Pricing = () => {
           className="max-w-3xl mx-auto"
         >
           <div className="rounded-2xl bg-gradient-card p-8 gold-border transition-all duration-300 hover:shadow-gold hover:border-primary/50">
-            <h3 className="text-2xl font-serif font-bold text-foreground mb-6 text-center">
+            <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6 text-center">
               Čo je v cene
             </h3>
 
