@@ -72,11 +72,11 @@ const Fleet = () => {
           <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
             Naša flotila
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             Luxusné vozidlá pre
             <span className="text-gradient-gold"> váš komfort</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             Všetky naše vozidlá sú najvyššej triedy, pravidelne servisované a udržiavané v bezchybnom stave.
           </p>
         </motion.div>
@@ -116,7 +116,7 @@ const Fleet = () => {
                 {/* Content */}
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-lg font-serif font-bold text-foreground">
+                    <h3 className="text-lg font-bold tracking-tight text-foreground">
                       {vehicle.name}
                     </h3>
                     <span className="text-xs text-muted-foreground">{vehicle.year}</span>
