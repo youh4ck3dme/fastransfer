@@ -1,39 +1,55 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { UsersIcon, BriefcaseIcon, WifiIcon, WineIcon } from '@/components/icons/ServiceIcons';
-import fleetSedan from '@/assets/fleet-sedan.jpg';
-import fleetVan from '@/assets/fleet-van.jpg';
-import fleetSuv from '@/assets/fleet-suv.jpg';
+import { UsersIcon, ClockIcon, WifiIcon } from '@/components/icons/ServiceIcons';
+import { Zap } from 'lucide-react';
+import audiA6_2020 from '@/assets/audi-a6-2020.jpg';
+import audiA6_2016 from '@/assets/audi-a6-2016.jpg';
+import skodaSuperb from '@/assets/skoda-superb.jpg';
+import skodaOctavia from '@/assets/skoda-octavia.jpg';
 
 const vehicles = [
   {
-    name: 'Executive Sedan',
-    model: 'Mercedes-Benz S-Class / BMW 7',
-    image: fleetSedan,
+    name: 'Audi A6',
+    year: '2020',
+    image: audiA6_2020,
     passengers: '1-3',
-    luggage: '3',
+    power: '100 kW',
+    transmission: 'Automat',
+    category: 'Vyššia trieda',
     features: ['Kožené sedadlá', 'WiFi', 'Klimatizácia', 'USB nabíjačky'],
-    priceFrom: '1,50 €/km',
-    popular: false,
-  },
-  {
-    name: 'Luxury SUV',
-    model: 'Range Rover / Mercedes GLS',
-    image: fleetSuv,
-    passengers: '1-4',
-    luggage: '4',
-    features: ['Panoramatická strecha', 'Masážne sedadlá', 'WiFi', 'Mini bar'],
-    priceFrom: '1,80 €/km',
     popular: true,
   },
   {
-    name: 'Executive Van',
-    model: 'Mercedes V-Class',
-    image: fleetVan,
-    passengers: '1-7',
-    luggage: '8',
-    features: ['Konferenčné usporiadanie', 'TV obrazovky', 'WiFi', 'Nápoje'],
-    priceFrom: '2,00 €/km',
+    name: 'Audi A6',
+    year: '2016',
+    image: audiA6_2016,
+    passengers: '1-3',
+    power: '180 kW',
+    transmission: 'Automat',
+    category: 'Vyššia trieda',
+    features: ['Kožené sedadlá', 'WiFi', 'Klimatizácia', 'USB nabíjačky'],
+    popular: false,
+  },
+  {
+    name: 'Škoda Superb',
+    year: '2021',
+    image: skodaSuperb,
+    passengers: '1-3',
+    power: '160 kW',
+    transmission: 'Automat',
+    category: 'Stredná trieda',
+    features: ['Klimatizácia', 'WiFi', 'USB nabíjačky', 'Veľký kufor'],
+    popular: false,
+  },
+  {
+    name: 'Škoda Octavia',
+    year: '2020',
+    image: skodaOctavia,
+    passengers: '1-3',
+    power: '110 kW',
+    transmission: 'Automat',
+    category: 'Stredná trieda',
+    features: ['Klimatizácia', 'WiFi', 'USB nabíjačky', 'Ekonomická'],
     popular: false,
   },
 ];
@@ -66,7 +82,7 @@ const Fleet = () => {
         </motion.div>
 
         {/* Vehicles Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {vehicles.map((vehicle, index) => (
             <motion.div
               key={vehicle.name}
@@ -98,50 +114,45 @@ const Fleet = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-serif font-bold text-foreground mb-1">
-                    {vehicle.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">{vehicle.model}</p>
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-lg font-serif font-bold text-foreground">
+                      {vehicle.name}
+                    </h3>
+                    <span className="text-xs text-muted-foreground">{vehicle.year}</span>
+                  </div>
+                  <p className="text-xs text-primary font-medium mb-3">{vehicle.category}</p>
 
                   {/* Specs */}
-                  <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <UsersIcon className="w-4 h-4 text-primary" />
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-border">
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <UsersIcon className="w-3.5 h-3.5 text-primary" />
                       <span>{vehicle.passengers}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <BriefcaseIcon className="w-4 h-4 text-primary" />
-                      <span>{vehicle.luggage}</span>
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Zap className="w-3.5 h-3.5 text-primary" />
+                      <span>{vehicle.power}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <WifiIcon className="w-4 h-4 text-primary" />
-                    </div>
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <WineIcon className="w-4 h-4 text-primary" />
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <ClockIcon className="w-3.5 h-3.5 text-primary" />
+                      <span>{vehicle.transmission}</span>
                     </div>
                   </div>
 
                   {/* Features */}
-                  <ul className="grid grid-cols-2 gap-2 mb-6">
+                  <ul className="grid grid-cols-2 gap-1 mb-4">
                     {vehicle.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <li key={feature} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <span className="w-1 h-1 bg-primary rounded-full" />
                         {feature}
                       </li>
                     ))}
                   </ul>
 
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-xs text-muted-foreground block">Od</span>
-                      <span className="text-xl font-bold text-gradient-gold">{vehicle.priceFrom}</span>
-                    </div>
-                    <Button variant={vehicle.popular ? "hero" : "heroOutline"} size="sm" asChild>
-                      <a href="#booking">Vybrať</a>
-                    </Button>
-                  </div>
+                  {/* CTA */}
+                  <Button variant={vehicle.popular ? "hero" : "heroOutline"} size="sm" className="w-full" asChild>
+                    <a href="#booking">Rezervovať</a>
+                  </Button>
                 </div>
               </div>
             </motion.div>
