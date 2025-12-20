@@ -6,6 +6,9 @@
     <title>FastTransfer | VIP Preprava & Luxusné Letiskové Transfery</title>
     <meta name="description" content="Prémiová VIP preprava na Slovensku. Letiskové transfery Viedeň, Budapešť, Praha. Luxusné vozidlá Mercedes & BMW. 24/7 dostupnosť." />
     <meta name="author" content="FastTransfer" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://fastransfer.sk/" />
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#D4AF37" />
@@ -29,7 +32,6 @@
     <link rel="apple-touch-icon" sizes="512x512" href="/pwa-512x512.png" />
     
     <!-- iOS Splash Screens -->
-    <!-- iPhone (all sizes) -->
     <link rel="apple-touch-startup-image" href="/splash-iphone.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" />
     <link rel="apple-touch-startup-image" href="/splash-iphone.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
     <link rel="apple-touch-startup-image" href="/splash-iphone.png" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" />
@@ -37,7 +39,6 @@
     <link rel="apple-touch-startup-image" href="/splash-iphone.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" />
     <link rel="apple-touch-startup-image" href="/splash-iphone.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)" />
     <link rel="apple-touch-startup-image" href="/splash-iphone.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
-    <!-- iPad -->
     <link rel="apple-touch-startup-image" href="/splash-ipad.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" href="/splash-ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" href="/splash-ipad.png" media="(device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2)" />
@@ -47,22 +48,66 @@
     <!-- Manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
 
+    <!-- Open Graph -->
     <meta property="og:title" content="FastTransfer | VIP Preprava Slovensko" />
     <meta property="og:description" content="Prémiová VIP preprava s luxusnými vozidlami. Letiskové transfery, firemná preprava, eventy. 24/7 dostupnosť." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://fastransfer.sk/" />
+    <meta property="og:image" content="https://fastransfer.sk/pwa-512x512.png" />
     <meta property="og:locale" content="sk_SK" />
+    <meta property="og:site_name" content="FastTransfer" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@FastTransfer" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="FastTransfer | VIP Preprava Slovensko" />
+    <meta name="twitter:description" content="Prémiová VIP preprava s luxusnými vozidlami. Letiskové transfery 24/7." />
+    <meta name="twitter:image" content="https://fastransfer.sk/pwa-512x512.png" />
 
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "FastTransfer",
+      "description": "Prémiová VIP preprava na Slovensku. Letiskové transfery, firemná preprava, eventy.",
+      "url": "https://fastransfer.sk",
+      "telephone": "+421911620520",
+      "email": "info@fastransfer.sk",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bratislava",
+        "addressCountry": "SK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.1486",
+        "longitude": "17.1077"
+      },
+      "openingHours": "Mo-Su 00:00-24:00",
+      "priceRange": "€€",
+      "image": "https://fastransfer.sk/pwa-512x512.png",
+      "sameAs": [],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "48.1486",
+          "longitude": "17.1077"
+        },
+        "geoRadius": "500000"
+      },
+      "serviceType": ["Airport Transfer", "VIP Transport", "Corporate Transport", "Limousine Service"]
+    }
+    </script>
+
+    <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.google.com" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
     <!-- reCAPTCHA Enterprise -->
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lf1mjEsAAAAAADMdMOAns6yUTTjBJKSYeTwiKAq"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lf1mjEsAAAAAADMdMOAns6yUTTjBJKSYeTwiKAq" async defer></script>
   </head>
 
   <body>

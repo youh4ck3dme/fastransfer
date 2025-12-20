@@ -44,7 +44,6 @@ const BookingForm = () => {
   const executeRecaptcha = useCallback(async (): Promise<string | null> => {
     return new Promise((resolve) => {
       if (!window.grecaptcha?.enterprise) {
-        console.warn('reCAPTCHA not loaded');
         resolve(null);
         return;
       }
@@ -55,8 +54,7 @@ const BookingForm = () => {
             action: 'BOOKING_SUBMIT'
           });
           resolve(token);
-        } catch (error) {
-          console.error('reCAPTCHA error:', error);
+        } catch {
           resolve(null);
         }
       });
@@ -97,7 +95,6 @@ const BookingForm = () => {
       });
 
       if (error) {
-        console.error('Booking error:', error);
         throw new Error(error.message || 'Nepodarilo sa odoslať rezerváciu');
       }
 
@@ -122,11 +119,11 @@ const BookingForm = () => {
         phone: '',
         email: '',
       });
-    } catch (error: any) {
-      console.error('Booking error:', error);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Nepodarilo sa odoslať rezerváciu. Skúste to prosím znova.";
       toast({
         title: "Chyba",
-        description: error.message || "Nepodarilo sa odoslať rezerváciu. Skúste to prosím znova.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
