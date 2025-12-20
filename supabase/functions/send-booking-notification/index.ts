@@ -12,6 +12,28 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting - in-memory store (resets on function restart)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 5; // Max requests per window
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute in milliseconds
+
+const checkRateLimit = (ip: string): { allowed: boolean; remaining: number; resetIn: number } => {
+  const now = Date.now();
+  const record = rateLimitStore.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT_MAX - 1, resetIn: RATE_LIMIT_WINDOW };
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, remaining: 0, resetIn: record.resetTime - now };
+  }
+  
+  record.count++;
+  return { allowed: true, remaining: RATE_LIMIT_MAX - record.count, resetIn: record.resetTime - now };
+};
+
 interface BookingNotificationRequest {
   customerName: string;
   customerEmail: string;
@@ -164,7 +186,33 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Get client IP for rate limiting
+  const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                   req.headers.get("x-real-ip") || 
+                   "unknown";
+
   try {
+    // 0. Check rate limit first
+    const rateLimit = checkRateLimit(clientIP);
+    if (!rateLimit.allowed) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ 
+          error: "Príliš veľa požiadaviek. Skúste znova o minútu.",
+          retryAfter: Math.ceil(rateLimit.resetIn / 1000)
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json", 
+            "Retry-After": String(Math.ceil(rateLimit.resetIn / 1000)),
+            ...corsHeaders 
+          },
+        }
+      );
+    }
+    console.log(`Rate limit check passed for ${clientIP}: ${rateLimit.remaining} remaining`);
+
     const booking: BookingNotificationRequest = await req.json();
     console.log("Received booking notification request");
 
