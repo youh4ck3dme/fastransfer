@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const RECAPTCHA_SECRET_KEY = Deno.env.get("RECAPTCHA_SECRET_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -17,7 +18,107 @@ interface BookingNotificationRequest {
   bookingDate: string;
   bookingTime: string;
   passengers: number;
+  recaptchaToken?: string;
 }
+
+// Input validation functions
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const isValidPhone = (phone: string): boolean => {
+  const phoneRegex = /^[+]?[\d\s\-()]{8,20}$/;
+  return phoneRegex.test(phone);
+};
+
+const sanitizeString = (str: string, maxLength: number = 200): string => {
+  return str
+    .replace(/<[^>]*>/g, '') // Remove HTML tags
+    .replace(/[<>"'&]/g, '') // Remove potentially dangerous characters
+    .trim()
+    .substring(0, maxLength);
+};
+
+const validateBookingData = (booking: BookingNotificationRequest): { valid: boolean; error?: string } => {
+  if (!booking.customerName || booking.customerName.trim().length < 2) {
+    return { valid: false, error: 'Meno je povinné a musí mať aspoň 2 znaky' };
+  }
+  if (!booking.customerEmail || !isValidEmail(booking.customerEmail)) {
+    return { valid: false, error: 'Neplatný email' };
+  }
+  if (!booking.customerPhone || !isValidPhone(booking.customerPhone)) {
+    return { valid: false, error: 'Neplatné telefónne číslo' };
+  }
+  if (!booking.pickupLocation || booking.pickupLocation.trim().length < 3) {
+    return { valid: false, error: 'Miesto vyzdvihnutia je povinné' };
+  }
+  if (!booking.dropoffLocation || booking.dropoffLocation.trim().length < 3) {
+    return { valid: false, error: 'Cieľová destinácia je povinná' };
+  }
+  if (!booking.bookingDate) {
+    return { valid: false, error: 'Dátum je povinný' };
+  }
+  if (!booking.bookingTime) {
+    return { valid: false, error: 'Čas je povinný' };
+  }
+  if (!booking.passengers || booking.passengers < 1 || booking.passengers > 20) {
+    return { valid: false, error: 'Neplatný počet cestujúcich' };
+  }
+  return { valid: true };
+};
+
+// reCAPTCHA Enterprise verification
+const verifyRecaptcha = async (token: string): Promise<{ success: boolean; score?: number; error?: string }> => {
+  if (!RECAPTCHA_SECRET_KEY) {
+    console.warn("RECAPTCHA_SECRET_KEY not configured, skipping verification");
+    return { success: true };
+  }
+
+  try {
+    const response = await fetch(
+      `https://recaptchaenterprise.googleapis.com/v1/projects/fastransfer/assessments?key=${RECAPTCHA_SECRET_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: {
+            token: token,
+            siteKey: "6Lf1mjEsAAAAAADMdMOAns6yUTTjBJKSYeTwiKAq",
+            expectedAction: "BOOKING_SUBMIT"
+          }
+        })
+      }
+    );
+
+    if (!response.ok) {
+      console.error("reCAPTCHA API error:", await response.text());
+      return { success: false, error: "reCAPTCHA verification failed" };
+    }
+
+    const data = await response.json();
+    console.log("reCAPTCHA response:", JSON.stringify(data));
+
+    const score = data.riskAnalysis?.score || 0;
+    const tokenValid = data.tokenProperties?.valid || false;
+    const actionMatched = data.tokenProperties?.action === "BOOKING_SUBMIT";
+
+    if (!tokenValid) {
+      return { success: false, error: "Invalid reCAPTCHA token" };
+    }
+
+    // Score threshold - 0.5 is recommended by Google
+    if (score < 0.5) {
+      console.warn(`Low reCAPTCHA score: ${score}`);
+      return { success: false, score, error: "Suspicious activity detected" };
+    }
+
+    return { success: true, score };
+  } catch (error) {
+    console.error("reCAPTCHA verification error:", error);
+    return { success: false, error: "reCAPTCHA verification failed" };
+  }
+};
 
 const sendEmail = async (to: string[], subject: string, html: string) => {
   const response = await fetch("https://api.resend.com/emails", {
@@ -62,7 +163,48 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const booking: BookingNotificationRequest = await req.json();
-    console.log("Received booking notification request:", booking);
+    console.log("Received booking notification request");
+
+    // 1. Validate input data
+    const validation = validateBookingData(booking);
+    if (!validation.valid) {
+      console.warn("Validation failed:", validation.error);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // 2. Verify reCAPTCHA token
+    if (booking.recaptchaToken) {
+      const recaptchaResult = await verifyRecaptcha(booking.recaptchaToken);
+      if (!recaptchaResult.success) {
+        console.warn("reCAPTCHA verification failed:", recaptchaResult.error);
+        return new Response(
+          JSON.stringify({ error: recaptchaResult.error || "reCAPTCHA verification failed" }),
+          {
+            status: 403,
+            headers: { "Content-Type": "application/json", ...corsHeaders },
+          }
+        );
+      }
+      console.log("reCAPTCHA verified successfully, score:", recaptchaResult.score);
+    }
+
+    // 3. Sanitize input data
+    const sanitizedBooking = {
+      ...booking,
+      customerName: sanitizeString(booking.customerName, 100),
+      customerEmail: booking.customerEmail.trim().toLowerCase(),
+      customerPhone: sanitizeString(booking.customerPhone, 20),
+      pickupLocation: sanitizeString(booking.pickupLocation, 200),
+      dropoffLocation: sanitizeString(booking.dropoffLocation, 200),
+    };
+
+    console.log("Processing sanitized booking for:", sanitizedBooking.customerEmail);
 
     // Send confirmation email to customer
     const customerEmailResponse = await sendEmail(
