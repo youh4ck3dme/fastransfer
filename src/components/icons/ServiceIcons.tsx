@@ -7,17 +7,48 @@ interface IconProps {
 
 export const PlaneIcon = ({ className }: IconProps) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="planeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
+        <stop offset="100%" stopColor="currentColor" stopOpacity="0.7" />
+      </linearGradient>
+      <filter id="planeGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="0.3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    {/* Main plane body */}
     <path 
       d="M21.5 15L14 8.5V4C14 2.9 13.1 2 12 2C10.9 2 10 2.9 10 4V8.5L2.5 15L4 16.5L10 14V19L8 20.5V22L12 21L16 22V20.5L14 19V14L20 16.5L21.5 15Z" 
-      fill="currentColor"
+      fill="url(#planeGradient)"
+      filter="url(#planeGlow)"
     />
+    {/* Plane outline for depth */}
     <path 
-      d="M12 2C10.9 2 10 2.9 10 4V8.5L2.5 15L4 16.5L10 14V19L8 20.5V22L12 21" 
+      d="M21.5 15L14 8.5V4C14 2.9 13.1 2 12 2C10.9 2 10 2.9 10 4V8.5L2.5 15L4 16.5L10 14V19L8 20.5V22L12 21L16 22V20.5L14 19V14L20 16.5L21.5 15Z" 
       stroke="currentColor" 
-      strokeWidth="0.5" 
-      strokeOpacity="0.3"
+      strokeWidth="0.4" 
+      strokeOpacity="0.5"
+      fill="none"
     />
-    <ellipse cx="12" cy="4" rx="1.5" ry="1" fill="currentColor" fillOpacity="0.3"/>
+    {/* Wing detail lines */}
+    <path d="M10.5 9L5 13.5" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.4" strokeLinecap="round"/>
+    <path d="M13.5 9L19 13.5" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.4" strokeLinecap="round"/>
+    {/* Cockpit window */}
+    <ellipse cx="12" cy="4" rx="1.2" ry="0.8" fill="currentColor" fillOpacity="0.4"/>
+    <ellipse cx="12" cy="3.8" rx="0.6" ry="0.4" fill="currentColor" fillOpacity="0.2"/>
+    {/* Tail detail */}
+    <path d="M11 20L12 21L13 20" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" strokeLinecap="round"/>
+    {/* Engine glow effect */}
+    <circle cx="12" cy="5.5" r="0.4" fill="currentColor" fillOpacity="0.25"/>
+    {/* Wing highlights */}
+    <path d="M6 14.5L8 13.5" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.2" strokeLinecap="round"/>
+    <path d="M18 14.5L16 13.5" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.2" strokeLinecap="round"/>
+    {/* Fuselage line */}
+    <path d="M12 6V12" stroke="currentColor" strokeWidth="0.4" strokeOpacity="0.15" strokeLinecap="round"/>
   </svg>
 );
 
