@@ -1,39 +1,46 @@
 import { motion } from 'framer-motion';
-import { Plane, Building2, Users, Calendar, Shield, Clock } from 'lucide-react';
+import { 
+  PlaneIcon, 
+  BuildingIcon, 
+  GroupIcon, 
+  CalendarIcon, 
+  ShieldIcon, 
+  ClockIcon 
+} from '@/components/icons/ServiceIcons';
 
 const services = [
   {
-    icon: Plane,
+    Icon: PlaneIcon,
     title: 'Letiskové transfery',
     description: 'Pohodlný transfer na všetky európske letiská. Viedeň, Budapešť, Praha a ďalšie.',
     features: ['Sledovanie letov', 'Tabuľka s menom', 'Pomoc s batožinou'],
   },
   {
-    icon: Building2,
+    Icon: BuildingIcon,
     title: 'Firemná preprava',
     description: 'Profesionálna preprava pre vašich klientov, partnerov a zamestnancov.',
     features: ['Fakturácia', 'Dlhodobé zmluvy', 'Prémiové vozidlá'],
   },
   {
-    icon: Users,
+    Icon: GroupIcon,
     title: 'Skupinové transfery',
     description: 'Preprava väčších skupín v komfortných minivanoch a autobusoch.',
     features: ['Až 8 osôb', 'Veľký batožinový priestor', 'WiFi na palube'],
   },
   {
-    icon: Calendar,
+    Icon: CalendarIcon,
     title: 'Eventy & Svadby',
     description: 'Exkluzívna preprava pre špeciálne príležitosti s maximálnou eleganciou.',
     features: ['Dekorácia vozidla', 'Šampanské', 'Červený koberec'],
   },
   {
-    icon: Shield,
+    Icon: ShieldIcon,
     title: 'VIP Security',
     description: 'Diskrétna preprava s maximálnou bezpečnosťou pre náročných klientov.',
     features: ['Pancierové vozidlá', 'Školený personál', 'Absolútna diskrétnosť'],
   },
   {
-    icon: Clock,
+    Icon: ClockIcon,
     title: 'Hodinový prenájom',
     description: 'Flexibilný prenájom vozidla s vodičom na celý deň alebo niekoľko hodín.',
     features: ['Od 2 hodín', 'Bez kilometrového limitu', 'Čakanie zahrnuté'],
@@ -83,7 +90,7 @@ const Services = () => {
               <div className="h-full p-8 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-500 hover:shadow-gold">
                 {/* Icon */}
                 <div className="w-14 h-14 rounded-xl bg-gradient-gold flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-6 h-6 text-primary-foreground" />
+                  <service.Icon className="w-7 h-7 text-primary-foreground" />
                 </div>
 
                 {/* Content */}
