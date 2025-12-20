@@ -62,12 +62,12 @@ const PWAInstallBanner = () => {
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           className="fixed bottom-4 left-4 z-50"
         >
-          <div className="neon-snake-border p-[2px]">
-            <div className="bg-background/95 backdrop-blur-md rounded-xl p-2.5 relative">
+          <div className="neon-snake-border rounded-xl">
+            <div className="bg-background/95 backdrop-blur-md rounded-[10px] p-2.5 relative">
               {/* Close button */}
               <button
                 onClick={handleDismiss}
-                className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-secondary flex items-center justify-center hover:bg-muted transition-colors border border-border"
+                className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-secondary flex items-center justify-center hover:bg-muted transition-colors border border-border z-10"
                 aria-label="Zatvoriť"
               >
                 <X className="w-2.5 h-2.5 text-muted-foreground" />
