@@ -1,0 +1,241 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Calendar, MapPin, Clock, Users, ArrowRight, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+
+const BookingForm = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    pickupLocation: '',
+    dropoffLocation: '',
+    date: '',
+    time: '',
+    passengers: '1',
+    name: '',
+    phone: '',
+    email: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Dopyt odoslaný!",
+      description: "Ozveme sa vám do 30 minút s potvrdením.",
+    });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <section id="booking" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
+              Rýchla rezervácia
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6">
+              Objednajte si
+              <span className="text-gradient-gold"> transfer</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              Vyplňte formulár a my vám do 30 minút potvrdíme rezerváciu.
+            </p>
+          </motion.div>
+
+          {/* Form */}
+          <motion.form
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="rounded-2xl bg-gradient-card p-8 md:p-10 gold-border shadow-elegant"
+          >
+            {/* Route Section */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="space-y-2">
+                <Label htmlFor="pickupLocation" className="text-foreground flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  Miesto vyzdvihnutia
+                </Label>
+                <Input
+                  id="pickupLocation"
+                  name="pickupLocation"
+                  placeholder="Napr. Bratislava, Hlavná stanica"
+                  value={formData.pickupLocation}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="dropoffLocation" className="text-foreground flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  Cieľová destinácia
+                </Label>
+                <Input
+                  id="dropoffLocation"
+                  name="dropoffLocation"
+                  placeholder="Napr. Viedeň, Schwechat letisko"
+                  value={formData.dropoffLocation}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Date & Time Section */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="space-y-2">
+                <Label htmlFor="date" className="text-foreground flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary" />
+                  Dátum
+                </Label>
+                <Input
+                  id="date"
+                  name="date"
+                  type="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="time" className="text-foreground flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
+                  Čas vyzdvihnutia
+                </Label>
+                <Input
+                  id="time"
+                  name="time"
+                  type="time"
+                  value={formData.time}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="passengers" className="text-foreground flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  Počet cestujúcich
+                </Label>
+                <select
+                  id="passengers"
+                  name="passengers"
+                  value={formData.passengers}
+                  onChange={handleChange}
+                  className="w-full h-12 rounded-lg bg-secondary/50 border border-border/50 focus:border-primary px-4 text-foreground"
+                  required
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <option key={num} value={num}>
+                      {num} {num === 1 ? 'osoba' : num < 5 ? 'osoby' : 'osôb'}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-border/50 my-8" />
+
+            {/* Contact Section */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-foreground">Meno a priezvisko</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Ján Novák"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-foreground">Telefón</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+421 9XX XXX XXX"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-foreground">Email</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="jan@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="bg-secondary/50 border-border/50 focus:border-primary h-12"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Submit */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="text-muted-foreground text-sm">
+                <span>Alebo zavolajte priamo: </span>
+                <a href="tel:+421911620520" className="text-primary font-semibold hover:underline">
+                  +421 911 620 520
+                </a>
+              </div>
+              <Button variant="hero" size="xl" type="submit" className="w-full sm:w-auto">
+                <span>Odoslať dopyt</span>
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
+          </motion.form>
+
+          {/* Quick Contact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center"
+          >
+            <span className="text-muted-foreground">Potrebujete okamžitú odpoveď?</span>
+            <Button variant="heroOutline" asChild>
+              <a href="tel:+421911620520" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Zavolajte nám
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default BookingForm;
