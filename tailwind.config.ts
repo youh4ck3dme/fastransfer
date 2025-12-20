@@ -92,13 +92,30 @@ export default {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in-down": {
+          from: { opacity: "0", transform: "translateY(-20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
         "slide-in": {
           from: { opacity: "0", transform: "translateX(-20px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        "slide-in-right": {
+          from: { opacity: "0", transform: "translateX(30px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
         "scale-in": {
-          from: { opacity: "0", transform: "scale(0.95)" },
+          from: { opacity: "0", transform: "scale(0.9)" },
           to: { opacity: "1", transform: "scale(1)" },
+        },
+        "scale-in-bounce": {
+          "0%": { opacity: "0", transform: "scale(0.8)" },
+          "50%": { transform: "scale(1.02)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
         shimmer: {
           from: { backgroundPosition: "200% 0" },
@@ -108,20 +125,58 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-15px) rotate(2deg)" },
+        },
         glow: {
           "0%, 100%": { boxShadow: "0 0 20px hsl(45, 80%, 55%, 0.3)" },
           "50%": { boxShadow: "0 0 40px hsl(45, 80%, 55%, 0.5)" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(45, 80%, 55%, 0.2), 0 0 40px hsl(45, 80%, 55%, 0.1)" 
+          },
+          "50%": { 
+            boxShadow: "0 0 30px hsl(45, 80%, 55%, 0.4), 0 0 60px hsl(45, 80%, 55%, 0.2)" 
+          },
+        },
+        "text-shimmer": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
+        },
+        "border-glow": {
+          "0%, 100%": { borderColor: "hsl(45, 80%, 55%, 0.3)" },
+          "50%": { borderColor: "hsl(45, 80%, 55%, 0.6)" },
+        },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-1deg)" },
+          "50%": { transform: "rotate(1deg)" },
+        },
+        "bounce-subtle": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.6s ease-out forwards",
-        "slide-in": "slide-in 0.6s ease-out forwards",
-        "scale-in": "scale-in 0.4s ease-out forwards",
+        "fade-in": "fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in-up": "fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in-down": "fade-in-down 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "slide-in": "slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "slide-in-right": "slide-in-right 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "scale-in": "scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "scale-in-bounce": "scale-in-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
         shimmer: "shimmer 3s linear infinite",
         float: "float 3s ease-in-out infinite",
+        "float-slow": "float-slow 6s ease-in-out infinite",
         glow: "glow 2s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "text-shimmer": "text-shimmer 3s ease-in-out infinite",
+        "border-glow": "border-glow 2s ease-in-out infinite",
+        wiggle: "wiggle 0.5s ease-in-out infinite",
+        "bounce-subtle": "bounce-subtle 1s ease-in-out infinite",
       },
     },
   },
