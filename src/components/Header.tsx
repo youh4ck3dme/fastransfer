@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import fastransferLogo from '@/assets/fastransfer-logo.jpeg';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,11 +40,13 @@ const Header = () => {
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
-            <img 
-              src={fastransferLogo} 
-              alt="FastTransfer Logo" 
-              className="h-12 w-auto object-contain rounded-lg"
-            />
+            <div className="w-12 h-12 bg-gradient-gold rounded-xl flex items-center justify-center shadow-gold">
+              <span className="text-primary-foreground font-serif font-bold text-xl">F</span>
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-lg font-serif font-bold text-foreground">FastTransfer</h1>
+              <p className="text-xs text-muted-foreground tracking-widest uppercase">VIP Preprava</p>
+            </div>
           </motion.a>
 
           {/* Desktop Navigation */}
