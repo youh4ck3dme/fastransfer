@@ -63,14 +63,14 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
+          <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
             Naše služby
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             Prémiová preprava pre
             <span className="text-gradient-gold"> každú príležitosť</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             Od letiskových transferov po exkluzívne VIP služby. Vždy s maximálnym komfortom a profesionalitou.
           </p>
         </motion.div>
@@ -94,10 +94,10 @@ const Services = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-serif font-bold text-foreground mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
                   {service.description}
                 </p>
 

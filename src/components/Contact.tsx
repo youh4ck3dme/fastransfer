@@ -51,14 +51,14 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
+          <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
             Kontaktujte nás
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             Sme tu
             <span className="text-gradient-gold"> pre vás</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             Máte otázky? Potrebujete špeciálnu ponuku? Kontaktujte nás kedykoľvek.
           </p>
         </motion.div>
@@ -104,10 +104,10 @@ const Contact = () => {
                 <MessageIcon className="w-8 h-8 text-primary-foreground" />
               </div>
 
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 tracking-tight">
                 Potrebujete okamžitú pomoc?
               </h3>
-              <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+              <p className="text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">
                 Zavolajte nám a my vám okamžite pomôžeme s vaším transferom. Sme dostupní 24 hodín denne, 7 dní v týždni.
               </p>
 

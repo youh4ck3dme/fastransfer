@@ -33,14 +33,14 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-gradient-gold rounded-xl flex items-center justify-center shadow-gold">
-                <span className="text-primary-foreground font-serif font-bold text-xl">F</span>
+                <span className="text-primary-foreground font-bold text-xl">F</span>
               </div>
               <div>
-                <h3 className="text-lg font-serif font-bold text-foreground">FastTransfer</h3>
-                <p className="text-xs text-muted-foreground tracking-widest uppercase">VIP Preprava</p>
+                <h3 className="text-lg font-bold text-foreground tracking-tight">FastTransfer</h3>
+                <p className="text-xs text-muted-foreground tracking-[0.15em] uppercase font-medium">VIP Preprava</p>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm mb-6">
+            <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
               Prémiová VIP preprava po celom Slovensku a Európe. Profesionálni vodiči, luxusné vozidlá, maximálny komfort.
             </p>
             <div className="flex gap-4">
@@ -67,7 +67,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-foreground mb-6">Služby</h4>
+            <h4 className="font-semibold text-foreground mb-6 tracking-tight">Služby</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
@@ -84,7 +84,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-foreground mb-6">Spoločnosť</h4>
+            <h4 className="font-semibold text-foreground mb-6 tracking-tight">Spoločnosť</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -101,7 +101,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-6">Kontakt</h4>
+            <h4 className="font-semibold text-foreground mb-6 tracking-tight">Kontakt</h4>
             <ul className="space-y-4">
               <li>
                 <a

@@ -41,11 +41,11 @@ const Header = () => {
             whileHover={{ scale: 1.02 }}
           >
             <div className="w-12 h-12 bg-gradient-gold rounded-xl flex items-center justify-center shadow-gold">
-              <span className="text-primary-foreground font-serif font-bold text-xl">F</span>
+              <span className="text-primary-foreground font-bold text-xl">F</span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-serif font-bold text-foreground">FastTransfer</h1>
-              <p className="text-xs text-muted-foreground tracking-widest uppercase">VIP Preprava</p>
+              <h1 className="text-lg font-bold text-foreground tracking-tight">FastTransfer</h1>
+              <p className="text-xs text-muted-foreground tracking-[0.15em] uppercase font-medium">VIP Preprava</p>
             </div>
           </motion.a>
 
