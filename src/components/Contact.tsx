@@ -74,7 +74,7 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="block p-6 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-300 hover:shadow-gold group"
+              className="block p-6 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-300 hover:shadow-gold group hover:bg-gradient-to-br hover:from-card hover:to-primary/5"
             >
               <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <item.Icon className="w-6 h-6 text-primary-foreground" />

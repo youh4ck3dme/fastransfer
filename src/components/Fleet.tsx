@@ -100,7 +100,7 @@ const Fleet = () => {
                 </div>
               )}
 
-              <div className={`h-full rounded-2xl overflow-hidden bg-gradient-card transition-all duration-500 group-hover:shadow-gold ${
+              <div className={`h-full rounded-2xl overflow-hidden bg-gradient-card transition-all duration-500 group-hover:shadow-gold group-hover:-translate-y-2 group-hover:border-primary/60 ${
                 vehicle.popular ? 'gold-border border-primary/50' : 'gold-border'
               }`}>
                 {/* Image */}
