@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Users, Briefcase, Wifi, Wine } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { UsersIcon, BriefcaseIcon, WifiIcon, WineIcon } from '@/components/icons/ServiceIcons';
 import fleetSedan from '@/assets/fleet-sedan.jpg';
 import fleetVan from '@/assets/fleet-van.jpg';
 import fleetSuv from '@/assets/fleet-suv.jpg';
@@ -107,18 +107,18 @@ const Fleet = () => {
                   {/* Specs */}
                   <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <Users className="w-4 h-4 text-primary" />
+                      <UsersIcon className="w-4 h-4 text-primary" />
                       <span>{vehicle.passengers}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <Briefcase className="w-4 h-4 text-primary" />
+                      <BriefcaseIcon className="w-4 h-4 text-primary" />
                       <span>{vehicle.luggage}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <Wifi className="w-4 h-4 text-primary" />
+                      <WifiIcon className="w-4 h-4 text-primary" />
                     </div>
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <Wine className="w-4 h-4 text-primary" />
+                      <WineIcon className="w-4 h-4 text-primary" />
                     </div>
                   </div>
 

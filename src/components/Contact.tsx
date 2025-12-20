@@ -1,32 +1,38 @@
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { 
+  PhoneIcon, 
+  MailIcon, 
+  LocationIcon, 
+  ClockIcon, 
+  MessageIcon 
+} from '@/components/icons/ServiceIcons';
 
 const Contact = () => {
   const contactInfo = [
     {
-      icon: Phone,
+      Icon: PhoneIcon,
       title: 'Telefón',
       value: '+421 911 620 520',
       href: 'tel:+421911620520',
       description: 'Dostupní 24/7',
     },
     {
-      icon: Mail,
+      Icon: MailIcon,
       title: 'Email',
       value: 'info@fastransfer.sk',
       href: 'mailto:info@fastransfer.sk',
       description: 'Odpovieme do 2 hodín',
     },
     {
-      icon: MapPin,
+      Icon: LocationIcon,
       title: 'Adresa',
       value: 'Bratislava, Slovensko',
       href: '#',
       description: 'Pôsobíme po celom SK',
     },
     {
-      icon: Clock,
+      Icon: ClockIcon,
       title: 'Pracovná doba',
       value: 'Non-stop 24/7',
       href: '#',
@@ -71,7 +77,7 @@ const Contact = () => {
               className="block p-6 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-300 hover:shadow-gold group"
             >
               <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <item.icon className="w-5 h-5 text-primary-foreground" />
+                <item.Icon className="w-6 h-6 text-primary-foreground" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-1">{item.title}</h3>
               <p className="text-primary font-medium mb-1">{item.value}</p>
@@ -95,7 +101,7 @@ const Contact = () => {
 
             <div className="relative z-10">
               <div className="w-16 h-16 rounded-2xl bg-gradient-gold flex items-center justify-center mx-auto mb-6 shadow-gold">
-                <MessageCircle className="w-8 h-8 text-primary-foreground" />
+                <MessageIcon className="w-8 h-8 text-primary-foreground" />
               </div>
 
               <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4">
@@ -108,7 +114,7 @@ const Contact = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="hero" size="xl" asChild>
                   <a href="tel:+421911620520" className="flex items-center gap-2">
-                    <Phone className="w-5 h-5" />
+                    <PhoneIcon className="w-5 h-5" />
                     +421 911 620 520
                   </a>
                 </Button>

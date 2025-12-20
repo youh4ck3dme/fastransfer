@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Clock, Users, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { 
+  CalendarIcon, 
+  LocationIcon, 
+  ClockIcon, 
+  UsersIcon, 
+  ArrowRightIcon, 
+  PhoneIcon 
+} from '@/components/icons/ServiceIcons';
 
 const BookingForm = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     pickupLocation: '',
     dropoffLocation: '',
@@ -19,12 +28,75 @@ const BookingForm = () => {
     email: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Dopyt odoslaný!",
-      description: "Ozveme sa vám do 30 minút s potvrdením.",
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Save booking to database
+      const { error: dbError } = await supabase
+        .from('bookings')
+        .insert({
+          pickup_location: formData.pickupLocation,
+          dropoff_location: formData.dropoffLocation,
+          booking_date: formData.date,
+          booking_time: formData.time,
+          passengers: parseInt(formData.passengers),
+          customer_name: formData.name,
+          customer_phone: formData.phone,
+          customer_email: formData.email,
+        });
+
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw new Error('Nepodarilo sa uložiť rezerváciu');
+      }
+
+      // Send email notifications
+      const { error: emailError } = await supabase.functions.invoke('send-booking-notification', {
+        body: {
+          customerName: formData.name,
+          customerEmail: formData.email,
+          customerPhone: formData.phone,
+          pickupLocation: formData.pickupLocation,
+          dropoffLocation: formData.dropoffLocation,
+          bookingDate: formData.date,
+          bookingTime: formData.time,
+          passengers: parseInt(formData.passengers),
+        },
+      });
+
+      if (emailError) {
+        console.error('Email error:', emailError);
+        // Don't throw - booking was saved, just email failed
+      }
+
+      toast({
+        title: "Rezervácia odoslaná!",
+        description: "Ozveme sa vám do 30 minút s potvrdením. Kontrolujte aj email.",
+      });
+
+      // Reset form
+      setFormData({
+        pickupLocation: '',
+        dropoffLocation: '',
+        date: '',
+        time: '',
+        passengers: '1',
+        name: '',
+        phone: '',
+        email: '',
+      });
+    } catch (error: any) {
+      console.error('Booking error:', error);
+      toast({
+        title: "Chyba",
+        description: error.message || "Nepodarilo sa odoslať rezerváciu. Skúste to prosím znova.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -72,7 +144,7 @@ const BookingForm = () => {
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="space-y-2">
                 <Label htmlFor="pickupLocation" className="text-foreground flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-primary" />
+                  <LocationIcon className="w-4 h-4 text-primary" />
                   Miesto vyzdvihnutia
                 </Label>
                 <Input
@@ -87,7 +159,7 @@ const BookingForm = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="dropoffLocation" className="text-foreground flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-primary" />
+                  <LocationIcon className="w-4 h-4 text-primary" />
                   Cieľová destinácia
                 </Label>
                 <Input
@@ -106,7 +178,7 @@ const BookingForm = () => {
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="space-y-2">
                 <Label htmlFor="date" className="text-foreground flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-primary" />
+                  <CalendarIcon className="w-4 h-4 text-primary" />
                   Dátum
                 </Label>
                 <Input
@@ -121,7 +193,7 @@ const BookingForm = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="time" className="text-foreground flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
+                  <ClockIcon className="w-4 h-4 text-primary" />
                   Čas vyzdvihnutia
                 </Label>
                 <Input
@@ -136,7 +208,7 @@ const BookingForm = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="passengers" className="text-foreground flex items-center gap-2">
-                  <Users className="w-4 h-4 text-primary" />
+                  <UsersIcon className="w-4 h-4 text-primary" />
                   Počet cestujúcich
                 </Label>
                 <select
@@ -209,9 +281,9 @@ const BookingForm = () => {
                   +421 911 620 520
                 </a>
               </div>
-              <Button variant="hero" size="xl" type="submit" className="w-full sm:w-auto">
-                <span>Odoslať dopyt</span>
-                <ArrowRight className="w-5 h-5 ml-2" />
+              <Button variant="hero" size="xl" type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+                <span>{isSubmitting ? 'Odosielam...' : 'Odoslať dopyt'}</span>
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Button>
             </div>
           </motion.form>
@@ -227,7 +299,7 @@ const BookingForm = () => {
             <span className="text-muted-foreground">Potrebujete okamžitú odpoveď?</span>
             <Button variant="heroOutline" asChild>
               <a href="tel:+421911620520" className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
+                <PhoneIcon className="w-4 h-4" />
                 Zavolajte nám
               </a>
             </Button>
