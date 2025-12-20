@@ -35,10 +35,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect gold-border mb-8"
+            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass-effect gold-border mb-8"
           >
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-sm text-muted-foreground">Prémiová VIP preprava na Slovensku</span>
+            <span className="text-sm font-medium text-foreground/80 tracking-wide">Prémiová VIP preprava na Slovensku</span>
           </motion.div>
 
           {/* Heading */}
@@ -46,10 +46,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-8 tracking-tight"
           >
             Váš{' '}
-            <span className="text-gradient-gold">exkluzívny</span>
+            <span className="text-gradient-gold font-extrabold">exkluzívny</span>
             <br />
             transfer s eleganciou
           </motion.h1>
@@ -59,7 +59,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-xl"
+            className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed"
           >
             Letiskové transfery, firemná preprava a VIP služby s maximálnym
             komfortom. Profesionálni vodiči, luxusné vozidlá, diskrétnosť zaručená.
@@ -70,16 +70,16 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-16"
+            className="flex flex-col sm:flex-row gap-5 mb-20"
           >
-            <Button variant="hero" size="xl" asChild className="text-background">
-              <a href="#booking" className="flex items-center gap-2">
+            <Button variant="hero" size="xl" asChild className="text-background font-bold">
+              <a href="#booking" className="flex items-center gap-2.5">
                 Objednať Transfer
                 <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
             <div className="neon-snake-border rounded-xl">
-              <Button variant="heroOutline" size="xl" asChild className="w-full bg-background">
+              <Button variant="heroOutline" size="xl" asChild className="w-full bg-background font-semibold">
                 <a href="#pricing">Zobraziť cenník</a>
               </Button>
             </div>
@@ -104,8 +104,8 @@ const Hero = () => {
                   <stat.icon className="w-5 h-5 text-primary transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  <p className="text-2xl font-extrabold text-foreground tracking-tight">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
@@ -118,13 +118,13 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+        <div className="w-7 h-11 rounded-full border-2 border-foreground/25 flex items-start justify-center p-2 backdrop-blur-sm">
           <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-primary rounded-full"
+            animate={{ y: [0, 14, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 bg-primary rounded-full shadow-lg shadow-primary/50"
           />
         </div>
       </motion.div>
