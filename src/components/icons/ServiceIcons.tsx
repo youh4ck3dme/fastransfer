@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface IconProps {
@@ -253,36 +254,80 @@ export const CarIcon = ({ className }: IconProps) => (
   </svg>
 );
 
-export const StarIcon = ({ className }: IconProps) => (
+export const StarIcon: React.FC<IconProps & { filled?: boolean }> = ({ className, filled = false }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="currentColor" />
+        <stop offset="100%" stopColor="currentColor" stopOpacity="0.7" />
+      </linearGradient>
+      <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="0.5" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
     <path 
-      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
-      fill="currentColor"
+      d="M12 2L14.09 8.26L20.18 9.27L15.54 13.14L16.81 19.02L12 16.27L7.19 19.02L8.46 13.14L3.82 9.27L9.91 8.26L12 2Z" 
+      fill={filled ? "url(#starGradient)" : "currentColor"}
       stroke="currentColor" 
-      strokeWidth="2" 
+      strokeWidth="1.5" 
       strokeLinecap="round" 
       strokeLinejoin="round"
+      filter={filled ? "url(#starGlow)" : undefined}
     />
-    <path d="M12 2L15.09 8.26L22 9.27L17 14.14" fill="currentColor" fillOpacity="0.3"/>
+    {filled && (
+      <>
+        <path 
+          d="M12 4L13.5 8.5L18 9.2L14.5 12L15.5 16.5L12 14.5L8.5 16.5L9.5 12L6 9.2L10.5 8.5L12 4Z" 
+          fill="currentColor"
+          opacity="0.3"
+        />
+        <circle cx="12" cy="10" r="1" fill="white" opacity="0.4" />
+      </>
+    )}
   </svg>
 );
 
 export const QuoteIcon = ({ className }: IconProps) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg className={className} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="quoteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="currentColor" stopOpacity="0.9" />
+        <stop offset="50%" stopColor="currentColor" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="currentColor" stopOpacity="0.3" />
+      </linearGradient>
+    </defs>
+    {/* Left quote mark */}
     <path 
-      d="M3 21C3 21 4 16.5 4 14C4 11 2 10 2 7C2 4 4 2 7 2C10 2 12 4 12 7C12 12 7 14 7 21H3Z" 
-      fill="currentColor" 
-      fillOpacity="0.2"
-      stroke="currentColor" 
-      strokeWidth="1.5"
+      d="M8 32C8 22 14 14 26 14V20C20 20 16 24 16 30H24V46H8V32Z" 
+      fill="url(#quoteGradient)"
     />
     <path 
-      d="M15 21C15 21 16 16.5 16 14C16 11 14 10 14 7C14 4 16 2 19 2C22 2 24 4 24 7C24 12 19 14 19 21H15Z" 
-      fill="currentColor"
-      fillOpacity="0.2"
-      stroke="currentColor" 
+      d="M8 32C8 22 14 14 26 14V20C20 20 16 24 16 30H24V46H8V32Z" 
+      stroke="currentColor"
       strokeWidth="1.5"
+      fill="none"
     />
+    {/* Right quote mark */}
+    <path 
+      d="M34 32C34 22 40 14 52 14V20C46 20 42 24 42 30H50V46H34V32Z" 
+      fill="url(#quoteGradient)"
+    />
+    <path 
+      d="M34 32C34 22 40 14 52 14V20C46 20 42 24 42 30H50V46H34V32Z" 
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+    />
+    {/* Decorative dots */}
+    <circle cx="12" cy="38" r="1.5" fill="currentColor" opacity="0.4" />
+    <circle cx="38" cy="38" r="1.5" fill="currentColor" opacity="0.4" />
+    {/* Accent lines */}
+    <path d="M4 50H28" stroke="currentColor" strokeWidth="0.75" opacity="0.25" />
+    <path d="M36 50H60" stroke="currentColor" strokeWidth="0.75" opacity="0.25" />
   </svg>
 );
 

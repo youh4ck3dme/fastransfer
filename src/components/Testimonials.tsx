@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import { StarIcon, QuoteIcon } from './icons/ServiceIcons';
 
 const testimonials = [
   {
@@ -28,8 +28,8 @@ const Testimonials = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
       {/* Decorative Quote */}
-      <div className="absolute top-20 left-10 opacity-5">
-        <Quote className="w-64 h-64 text-primary" />
+      <div className="absolute top-20 left-10 opacity-10">
+        <QuoteIcon className="w-64 h-64 text-primary" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -65,7 +65,7 @@ const Testimonials = () => {
                 {/* Stars */}
                 <div className="flex gap-1 mb-6">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                    <StarIcon key={i} className="w-5 h-5 text-primary" filled />
                   ))}
                 </div>
 
@@ -100,7 +100,7 @@ const Testimonials = () => {
           className="mt-16 flex flex-wrap items-center justify-center gap-8 text-muted-foreground"
         >
           <div className="flex items-center gap-2">
-            <Star className="w-5 h-5 fill-primary text-primary" />
+            <StarIcon className="w-5 h-5 text-primary" filled />
             <span className="font-semibold text-foreground">4.9</span>
             <span>na Google</span>
           </div>
