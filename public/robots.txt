@@ -12,3 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://fastransfer.sk/sitemap.xml
+Allow: /
