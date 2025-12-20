@@ -100,7 +100,7 @@ const BookingForm = () => {
         throw new Error('Nepodarilo sa uložiť rezerváciu');
       }
 
-      // Send email notifications
+      // Send email notifications with reCAPTCHA token
       const { error: emailError } = await supabase.functions.invoke('send-booking-notification', {
         body: {
           customerName: formData.name,
@@ -111,6 +111,7 @@ const BookingForm = () => {
           bookingDate: formData.date,
           bookingTime: formData.time,
           passengers: parseInt(formData.passengers),
+          recaptchaToken: recaptchaToken,
         },
       });
 
