@@ -308,15 +308,15 @@
   padding: 2px;
   background: conic-gradient(
     from var(--neon-angle, 0deg),
-    rgba(0, 0, 0, 0.8) 0deg,
-    hsl(var(--primary)) 30deg,
-    hsl(var(--gold-light)) 60deg,
-    rgba(0, 0, 0, 0.8) 90deg,
-    rgba(0, 0, 0, 0.8) 180deg,
-    hsl(var(--primary)) 210deg,
-    hsl(var(--gold-light)) 240deg,
-    rgba(0, 0, 0, 0.8) 270deg,
-    rgba(0, 0, 0, 0.8) 360deg
+    transparent 0deg,
+    hsl(var(--primary)) 20deg,
+    hsl(var(--gold-light)) 40deg,
+    transparent 60deg,
+    transparent 180deg,
+    hsl(var(--primary)) 200deg,
+    hsl(var(--gold-light)) 220deg,
+    transparent 240deg,
+    transparent 360deg
   );
   animation: neon-rotate 3s linear infinite;
 }
