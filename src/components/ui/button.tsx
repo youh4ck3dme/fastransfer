@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl hover:shadow-primary/20",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-transparent hover:bg-secondary hover:text-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-secondary hover:text-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-gold text-primary-foreground font-bold shadow-lg hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300",
-        heroOutline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300",
-        premium: "bg-gradient-gold text-primary-foreground font-bold shadow-gold hover:shadow-xl hover:scale-[1.02] transition-all duration-300",
-        glass: "glass-effect text-foreground hover:bg-secondary/50 border-border/50",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:-translate-y-0.5 active:translate-y-0",
+        outline: "border border-border bg-transparent hover:bg-secondary hover:text-foreground hover:border-primary/50 hover:-translate-y-0.5 active:translate-y-0",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:-translate-y-0.5 active:translate-y-0",
+        ghost: "hover:bg-secondary hover:text-foreground hover:scale-[1.02] active:scale-[0.98]",
+        link: "text-primary underline-offset-4 hover:underline relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
+        hero: "bg-gradient-gold text-primary-foreground font-bold shadow-lg hover:shadow-2xl hover:shadow-primary/40 hover:scale-105 hover:-translate-y-1 active:scale-[1.02] active:translate-y-0 transition-all duration-300 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700",
+        heroOutline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/30 active:scale-[1.02] active:translate-y-0 transition-all duration-300",
+        premium: "bg-gradient-gold text-primary-foreground font-bold shadow-gold hover:shadow-2xl hover:scale-[1.03] hover:-translate-y-1 active:scale-[1.01] active:translate-y-0 transition-all duration-300 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700",
+        glass: "glass-effect text-foreground hover:bg-secondary/50 border-border/50 hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0",
       },
       size: {
         default: "h-10 px-4 py-2",

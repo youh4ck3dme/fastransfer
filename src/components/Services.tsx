@@ -87,7 +87,7 @@ const Services = () => {
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="group"
             >
-              <div className="h-full p-8 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-500 hover:shadow-gold">
+              <div className="h-full p-8 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-500 hover:shadow-gold hover:bg-gradient-to-br hover:from-card hover:to-primary/5">
                 {/* Icon */}
                 <div className="w-14 h-14 rounded-xl bg-gradient-gold flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <service.Icon className="w-7 h-7 text-primary-foreground" />

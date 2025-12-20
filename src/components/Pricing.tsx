@@ -69,7 +69,7 @@ const Pricing = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-xl font-serif font-bold text-foreground mb-4">Ceny city transferov</h3>
-            <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden">
+            <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden transition-all duration-300 hover:shadow-gold hover:border-primary/50">
               <div className="grid grid-cols-4 gap-4 p-4 bg-secondary/30 text-sm font-semibold text-muted-foreground">
                 <span>Odkiaľ</span>
                 <span>Kam</span>
@@ -102,7 +102,7 @@ const Pricing = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h3 className="text-xl font-serif font-bold text-foreground mb-4">Ceny letiskových transferov</h3>
-            <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden">
+            <div className="rounded-2xl bg-gradient-card gold-border overflow-hidden transition-all duration-300 hover:shadow-gold hover:border-primary/50">
               <div className="grid grid-cols-4 gap-4 p-4 bg-secondary/30 text-sm font-semibold text-muted-foreground">
                 <span>Odkiaľ</span>
                 <span>Kam</span>
@@ -140,7 +140,7 @@ const Pricing = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-3xl mx-auto"
         >
-          <div className="rounded-2xl bg-gradient-card p-8 gold-border">
+          <div className="rounded-2xl bg-gradient-card p-8 gold-border transition-all duration-300 hover:shadow-gold hover:border-primary/50">
             <h3 className="text-2xl font-serif font-bold text-foreground mb-6 text-center">
               Čo je v cene
             </h3>

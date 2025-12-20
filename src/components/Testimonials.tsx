@@ -59,9 +59,10 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="group"
             >
-              <div className="h-full p-8 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-500">
+              <div className="h-full p-8 rounded-2xl bg-gradient-card gold-border hover:border-primary/50 transition-all duration-500 hover:shadow-gold hover:bg-gradient-to-br hover:from-card hover:to-primary/5">
                 {/* Stars */}
                 <div className="flex gap-1 mb-6">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (

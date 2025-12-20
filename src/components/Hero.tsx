@@ -95,10 +95,10 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 group cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center gold-border">
-                  <stat.icon className="w-5 h-5 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center gold-border transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold group-hover:border-primary/50">
+                  <stat.icon className="w-5 h-5 text-primary transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-foreground">{stat.value}</p>
