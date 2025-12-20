@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +14,19 @@ import {
   PhoneIcon 
 } from '@/components/icons/ServiceIcons';
 
+declare global {
+  interface Window {
+    grecaptcha: {
+      enterprise: {
+        ready: (callback: () => void) => void;
+        execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      };
+    };
+  }
+}
+
+const RECAPTCHA_SITE_KEY = '6Lf1mjEsAAAAAADMdMOAns6yUTTjBJKSYeTwiKAq';
+
 const BookingForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,11 +41,46 @@ const BookingForm = () => {
     email: '',
   });
 
+  const executeRecaptcha = useCallback(async (): Promise<string | null> => {
+    return new Promise((resolve) => {
+      if (!window.grecaptcha?.enterprise) {
+        console.warn('reCAPTCHA not loaded');
+        resolve(null);
+        return;
+      }
+      
+      window.grecaptcha.enterprise.ready(async () => {
+        try {
+          const token = await window.grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {
+            action: 'BOOKING_SUBMIT'
+          });
+          resolve(token);
+        } catch (error) {
+          console.error('reCAPTCHA error:', error);
+          resolve(null);
+        }
+      });
+    });
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      // Execute reCAPTCHA
+      const recaptchaToken = await executeRecaptcha();
+      
+      if (!recaptchaToken) {
+        toast({
+          title: "Chyba overenia",
+          description: "Nepodarilo sa overiť reCAPTCHA. Skúste to prosím znova.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       // Save booking to database
       const { error: dbError } = await supabase
         .from('bookings')
