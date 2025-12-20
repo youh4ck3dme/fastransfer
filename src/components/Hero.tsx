@@ -71,15 +71,19 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 mb-16"
           >
-            <Button variant="hero" size="xl" asChild>
-              <a href="#booking" className="flex items-center gap-2">
-                Objednať Transfer
-                <ArrowRight className="w-5 h-5" />
-              </a>
-            </Button>
-            <Button variant="heroOutline" size="xl" asChild>
-              <a href="#pricing">Zobraziť cenník</a>
-            </Button>
+            <div className="neon-snake-border">
+              <Button variant="hero" size="xl" asChild className="relative z-10">
+                <a href="#booking" className="flex items-center gap-2">
+                  Objednať Transfer
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </Button>
+            </div>
+            <div className="neon-snake-border">
+              <Button variant="heroOutline" size="xl" asChild className="relative z-10 bg-background">
+                <a href="#pricing">Zobraziť cenník</a>
+              </Button>
+            </div>
           </motion.div>
 
           {/* Stats */}
