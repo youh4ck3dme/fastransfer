@@ -12,10 +12,17 @@ const Contact = () => {
   const contactInfo = [
     {
       Icon: PhoneIcon,
-      title: 'Telefón',
-      value: '+421 911 620 520',
-      href: 'tel:+421911620520',
-      description: 'Dostupní 24/7',
+      title: 'Telefón 1',
+      value: '+421 902 609 940',
+      href: 'tel:+421902609940',
+      description: 'Hlavná linka',
+    },
+    {
+      Icon: PhoneIcon,
+      title: 'Telefón 2',
+      value: '+421 911 923 573',
+      href: 'tel:+421911923573',
+      description: 'Záložná linka',
     },
     {
       Icon: MailIcon,
@@ -25,18 +32,11 @@ const Contact = () => {
       description: 'Odpovieme do 2 hodín',
     },
     {
-      Icon: LocationIcon,
-      title: 'Adresa',
-      value: 'Bratislava, Slovensko',
-      href: '#',
-      description: 'Pôsobíme po celom SK',
-    },
-    {
       Icon: ClockIcon,
-      title: 'Pracovná doba',
-      value: 'Non-stop 24/7',
+      title: 'Dispečing',
+      value: '08:00 - 21:00',
       href: '#',
-      description: 'Vrátane sviatkov',
+      description: 'Pondelok - Nedeľa',
     },
   ];
 
@@ -113,9 +113,9 @@ const Contact = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="hero" size="xl" asChild>
-                  <a href="tel:+421911620520" className="flex items-center gap-2">
+                  <a href="tel:+421902609940" className="flex items-center gap-2">
                     <PhoneIcon className="w-5 h-5" />
-                    +421 911 620 520
+                    +421 902 609 940
                   </a>
                 </Button>
                 <Button variant="heroOutline" size="xl" asChild>

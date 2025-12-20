@@ -7,9 +7,9 @@ const Footer = () => {
   const footerLinks = {
     services: [
       { label: 'Letiskové transfery', href: '#services' },
-      { label: 'Firemná preprava', href: '#services' },
-      { label: 'VIP Security', href: '#services' },
+      { label: 'City transfery', href: '#services' },
       { label: 'Eventy & Svadby', href: '#services' },
+      { label: 'Drink Taxi', href: '#services' },
     ],
     company: [
       { label: 'O nás', href: '#about' },
@@ -105,11 +105,20 @@ const Footer = () => {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="tel:+421911620520"
+                  href="tel:+421902609940"
                   className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors text-sm"
                 >
                   <Phone className="w-4 h-4 text-primary" />
-                  +421 911 620 520
+                  +421 902 609 940
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+421911923573"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  <Phone className="w-4 h-4 text-primary" />
+                  +421 911 923 573
                 </a>
               </li>
               <li>
@@ -122,9 +131,14 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <span className="flex items-center gap-3 text-muted-foreground text-sm">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  Bratislava, Slovensko
+                <span className="flex items-start gap-3 text-muted-foreground text-sm">
+                  <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span>
+                    GAR&DIER, s. r. o.<br />
+                    Doležalova 3424/15C<br />
+                    821 04 Bratislava – Ružinov<br />
+                    IČO: 53 228 243
+                  </span>
                 </span>
               </li>
             </ul>
@@ -134,19 +148,11 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} FastTransfer VIP Preprava. Všetky práva vyhradené.
+            © {currentYear} FastTransfer. Všetky práva vyhradené.
           </p>
-          <div className="flex gap-6">
-            {footerLinks.legal.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+          <p className="text-xs text-muted-foreground">
+            dev & design by Pali Mrázek | #save4web
+          </p>
         </div>
       </div>
     </footer>
