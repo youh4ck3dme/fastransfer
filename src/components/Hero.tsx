@@ -71,14 +71,12 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 mb-16"
           >
-            <div className="neon-snake-border rounded-xl">
-              <Button variant="hero" size="xl" asChild className="w-full">
-                <a href="#booking" className="flex items-center gap-2">
-                  Objednať Transfer
-                  <ArrowRight className="w-5 h-5" />
-                </a>
-              </Button>
-            </div>
+            <Button variant="hero" size="xl" asChild className="text-background">
+              <a href="#booking" className="flex items-center gap-2">
+                Objednať Transfer
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
             <div className="neon-snake-border rounded-xl">
               <Button variant="heroOutline" size="xl" asChild className="w-full bg-background">
                 <a href="#pricing">Zobraziť cenník</a>
