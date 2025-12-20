@@ -1,7 +1,10 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const RECAPTCHA_SECRET_KEY = Deno.env.get("RECAPTCHA_SECRET_KEY");
+const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -178,21 +181,30 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // 2. Verify reCAPTCHA token
-    if (booking.recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(booking.recaptchaToken);
-      if (!recaptchaResult.success) {
-        console.warn("reCAPTCHA verification failed:", recaptchaResult.error);
-        return new Response(
-          JSON.stringify({ error: recaptchaResult.error || "reCAPTCHA verification failed" }),
-          {
-            status: 403,
-            headers: { "Content-Type": "application/json", ...corsHeaders },
-          }
-        );
-      }
-      console.log("reCAPTCHA verified successfully, score:", recaptchaResult.score);
+    // 2. Verify reCAPTCHA token - REQUIRED for security
+    if (!booking.recaptchaToken) {
+      console.warn("Missing reCAPTCHA token");
+      return new Response(
+        JSON.stringify({ error: "reCAPTCHA token is required" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
     }
+
+    const recaptchaResult = await verifyRecaptcha(booking.recaptchaToken);
+    if (!recaptchaResult.success) {
+      console.warn("reCAPTCHA verification failed:", recaptchaResult.error);
+      return new Response(
+        JSON.stringify({ error: recaptchaResult.error || "reCAPTCHA verification failed" }),
+        {
+          status: 403,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+    console.log("reCAPTCHA verified successfully, score:", recaptchaResult.score);
 
     // 3. Sanitize input data
     const sanitizedBooking = {
@@ -206,9 +218,51 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Processing sanitized booking for:", sanitizedBooking.customerEmail);
 
-    // Send confirmation email to customer
+    // 4. Insert booking into database using service role (bypasses RLS)
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+      console.error("Missing Supabase configuration");
+      return new Response(
+        JSON.stringify({ error: "Server configuration error" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    
+    const { data: insertedBooking, error: dbError } = await supabase
+      .from('bookings')
+      .insert({
+        pickup_location: sanitizedBooking.pickupLocation,
+        dropoff_location: sanitizedBooking.dropoffLocation,
+        booking_date: sanitizedBooking.bookingDate,
+        booking_time: sanitizedBooking.bookingTime,
+        passengers: sanitizedBooking.passengers,
+        customer_name: sanitizedBooking.customerName,
+        customer_phone: sanitizedBooking.customerPhone,
+        customer_email: sanitizedBooking.customerEmail,
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error("Database insert error:", dbError);
+      return new Response(
+        JSON.stringify({ error: "Nepodarilo sa uložiť rezerváciu" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    console.log("Booking saved to database:", insertedBooking?.id);
+
+    // 5. Send confirmation email to customer
     const customerEmailResponse = await sendEmail(
-      [booking.customerEmail],
+      [sanitizedBooking.customerEmail],
       "✓ Vaša rezervácia bola prijatá | FastTransfer VIP",
       `
         <!DOCTYPE html>
