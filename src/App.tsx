@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SplashScreen from "./components/SplashScreen";
+import PWAInstallBanner from "./components/PWAInstallBanner";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => {
           )}
           <Toaster />
           <Sonner />
+          <PWAInstallBanner />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
