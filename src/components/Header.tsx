@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,7 +51,7 @@ const Header = () => {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Hlavná navigácia">
             {navLinks.map((link) => (
               <motion.a
                 key={link.href}
@@ -80,14 +81,18 @@ const Header = () => {
             <Button variant="hero" size="lg" asChild>
               <a href="#booking">Objednať</a>
             </Button>
+            <ModeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMobileMenuOpen ? 'Zatvoriť menu' : 'Otvoriť menu'}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -100,8 +105,9 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden glass-effect mt-3 mx-4 rounded-2xl overflow-hidden"
+            id="mobile-menu"
           >
-            <nav className="p-6 space-y-4">
+            <nav className="p-6 space-y-4" aria-label="Mobilná navigácia">
               {navLinks.map((link) => (
                 <a
                   key={link.href}

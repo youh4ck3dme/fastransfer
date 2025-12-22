@@ -80,6 +80,7 @@ const Admin = () => {
 
       setBookings(data.bookings || []);
       setIsAuthenticated(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Error fetching bookings:", error);
       toast({
@@ -125,6 +126,7 @@ const Admin = () => {
         title: "Úspech",
         description: `Status zmenený na: ${getStatusLabel(newStatus)}`,
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Error updating booking:", error);
       toast({

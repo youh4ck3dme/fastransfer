@@ -85,7 +85,7 @@ const Fleet = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {vehicles.map((vehicle, index) => (
             <motion.div
-              key={vehicle.name}
+              key={`${vehicle.name}-${vehicle.year}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

@@ -229,30 +229,8 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // 2. Verify reCAPTCHA token - REQUIRED for security
-    if (!booking.recaptchaToken) {
-      console.warn("Missing reCAPTCHA token");
-      return new Response(
-        JSON.stringify({ error: "reCAPTCHA token is required" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-
-    const recaptchaResult = await verifyRecaptcha(booking.recaptchaToken);
-    if (!recaptchaResult.success) {
-      console.warn("reCAPTCHA verification failed:", recaptchaResult.error);
-      return new Response(
-        JSON.stringify({ error: recaptchaResult.error || "reCAPTCHA verification failed" }),
-        {
-          status: 403,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-    console.log("reCAPTCHA verified successfully, score:", recaptchaResult.score);
+    // 2. reCAPTCHA verification DISABLED
+    // if (!booking.recaptchaToken) { ... }
 
     // 3. Sanitize input data
     const sanitizedBooking = {
@@ -843,6 +821,8 @@ const handler = async (req: Request): Promise<Response> => {
         headers: { "Content-Type": "application/json", ...corsHeaders },
       }
     );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Error in send-booking-notification function:", error);
     return new Response(

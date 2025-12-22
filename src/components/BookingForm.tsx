@@ -14,18 +14,7 @@ import {
   PhoneIcon 
 } from '@/components/icons/ServiceIcons';
 
-declare global {
-  interface Window {
-    grecaptcha: {
-      enterprise: {
-        ready: (callback: () => void) => void;
-        execute: (siteKey: string, options: { action: string }) => Promise<string>;
-      };
-    };
-  }
-}
 
-const RECAPTCHA_SITE_KEY = '6Lf1mjEsAAAAAADMdMOAns6yUTTjBJKSYeTwiKAq';
 
 const BookingForm = () => {
   const { toast } = useToast();
@@ -41,43 +30,14 @@ const BookingForm = () => {
     email: '',
   });
 
-  const executeRecaptcha = useCallback(async (): Promise<string | null> => {
-    return new Promise((resolve) => {
-      if (!window.grecaptcha?.enterprise) {
-        resolve(null);
-        return;
-      }
-      
-      window.grecaptcha.enterprise.ready(async () => {
-        try {
-          const token = await window.grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {
-            action: 'BOOKING_SUBMIT'
-          });
-          resolve(token);
-        } catch {
-          resolve(null);
-        }
-      });
-    });
-  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Execute reCAPTCHA
-      const recaptchaToken = await executeRecaptcha();
-      
-      if (!recaptchaToken) {
-        toast({
-          title: "Chyba overenia",
-          description: "Nepodarilo sa overiť reCAPTCHA. Skúste to prosím znova.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-        return;
-      }
+
 
       // All booking logic handled by edge function (reCAPTCHA verification + DB insert + email)
       const { data, error } = await supabase.functions.invoke('send-booking-notification', {
@@ -90,7 +50,7 @@ const BookingForm = () => {
           bookingDate: formData.date,
           bookingTime: formData.time,
           passengers: parseInt(formData.passengers),
-          recaptchaToken: recaptchaToken,
+
         },
       });
 
@@ -249,6 +209,7 @@ const BookingForm = () => {
                   value={formData.passengers}
                   onChange={handleChange}
                   className="w-full h-12 rounded-lg bg-secondary/50 border border-border/50 focus:border-primary px-4 text-foreground appearance-none cursor-pointer"
+                  aria-label="Počet cestujúcich"
                   required
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
