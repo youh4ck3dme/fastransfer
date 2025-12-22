@@ -89,7 +89,7 @@ const Header = () => {
             className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
+            aria-controls={isMobileMenuOpen ? "mobile-menu" : undefined}
             aria-label={isMobileMenuOpen ? 'Zatvoriť menu' : 'Otvoriť menu'}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
