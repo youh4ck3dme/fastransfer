@@ -55,8 +55,8 @@ const Contact = () => {
             Kontaktujte nás
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-            Sme tu
-            <span className="text-gradient-gold"> pre vás</span>
+            Sme tu{' '}
+            <span className="text-gradient-gold">pre vás</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Máte otázky? Potrebujete špeciálnu ponuku? Kontaktujte nás kedykoľvek.
