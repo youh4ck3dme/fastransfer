@@ -14,7 +14,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[100dvh] h-screen w-full overflow-hidden bg-black">
+    <section className="relative min-h-[100dvh] h-screen w-full overflow-hidden bg-black" style={{ perspective: '1000px' }}>
       {/* Video Background */}
       <div className="absolute inset-0 min-h-[100dvh] h-screen w-full">
         <motion.div 
@@ -36,43 +36,65 @@ const Hero = () => {
           </video>
         </motion.div>
         
-        {/* Simple dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-black/30" />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-black/80 sm:bg-gradient-to-r sm:from-black/95 sm:via-black/60 sm:to-black/30" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex h-full items-end sm:items-center justify-center px-4 pb-12 sm:pb-8 sm:px-6 lg:px-8 pt-[120px]">
-        <div className="w-full max-w-4xl space-y-6 sm:space-y-8 text-center sm:text-left">
-          
+      {/* Content - Split Layout for Mobile */}
+      <div className="relative z-10 flex flex-col h-full justify-between px-4 sm:px-6 lg:px-8" style={{ transformStyle: 'preserve-3d' }}>
+        
+        {/* TOP SECTION - Headline (Mobile: under header) */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="pt-24 sm:pt-32 text-center sm:text-left max-w-4xl mx-auto sm:mx-0 w-full"
+          style={{ transform: 'translateZ(50px)' }}
+        >
           {/* Badge - Hidden on mobile */}
-          <div className="hidden sm:inline-flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 backdrop-blur-sm border border-primary/20">
+          <div className="hidden sm:inline-flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 backdrop-blur-sm border border-primary/20 mb-6">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             <span className="text-xs font-medium uppercase tracking-wider text-white/90">VIP Preprava</span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
             Váš <span className="text-primary italic font-extrabold">exkluzívny</span> transfer
           </h1>
 
-          {/* Description - Hidden on mobile */}
-          <p className="hidden sm:block max-w-xl text-base text-gray-300 sm:text-lg">
-            Letiskové transfery a VIP služby s maximálnym komfortom. 
-            Profesionálni vodiči a luxusné vozidlá.
-          </p>
+          {/* Thematic Subheading */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-4 text-sm sm:text-base md:text-lg text-gray-300 max-w-md mx-auto sm:mx-0"
+            style={{ transform: 'translateZ(30px)' }}
+          >
+            <span className="hidden sm:inline">Profesionálna VIP preprava po celom Slovensku. </span>
+            <span className="sm:hidden">Komfort • Elegancia • Spoľahlivosť</span>
+            <span className="hidden sm:inline">Letiskové transfery • Firemná doprava • Eventy</span>
+          </motion.p>
+        </motion.div>
 
-
+        {/* BOTTOM SECTION - Buttons & Stats */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="pb-8 sm:pb-12 text-center sm:text-left max-w-4xl mx-auto sm:mx-0 w-full space-y-6"
+          style={{ transform: 'translateZ(20px)' }}
+        >
           {/* CTA Buttons */}
-          <div className="flex flex-col gap-4 sm:flex-row justify-center sm:justify-start">
+          <div className="flex flex-col gap-3 sm:flex-row justify-center sm:justify-start">
             <Button 
               variant="hero" 
               size="lg"
               asChild 
-              className="w-full font-bold uppercase tracking-wider sm:w-auto"
+              className="w-full sm:w-auto font-bold uppercase tracking-wider text-sm sm:text-base px-6 sm:px-8"
             >
               <a href="#booking" className="flex items-center justify-center gap-2">
                 Objednať Transfer
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </a>
             </Button>
             
@@ -80,50 +102,49 @@ const Hero = () => {
               variant="heroOutline" 
               size="lg"
               asChild 
-              className="w-full bg-black/40 font-semibold uppercase tracking-wider backdrop-blur-sm sm:w-auto"
+              className="w-full sm:w-auto bg-black/40 font-semibold uppercase tracking-wider backdrop-blur-sm text-sm sm:text-base px-6 sm:px-8"
             >
               <a href="#pricing">Cenník</a>
             </Button>
           </div>
 
-
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 pt-6 sm:flex sm:gap-8 sm:border-t-0 sm:pt-0 justify-center">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
-                <Star className="h-5 w-5 text-primary" />
+          <div className="flex justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
+                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-bold text-white">4.9</p>
-                <p className="text-xs text-gray-400 uppercase">Hodnotenie</p>
+                <p className="text-base sm:text-lg font-bold text-white">4.9</p>
+                <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Hodnotenie</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
-                <Clock className="h-5 w-5 text-primary" />
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
+                <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-bold text-white">24/7</p>
-                <p className="text-xs text-gray-400 uppercase">Dostupnosť</p>
+                <p className="text-base sm:text-lg font-bold text-white">24/7</p>
+                <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Dostupnosť</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
-                <Shield className="h-5 w-5 text-primary" />
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
+                <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-bold text-white">10+</p>
-                <p className="text-xs text-gray-400 uppercase">Rokov</p>
+                <p className="text-base sm:text-lg font-bold text-white">10+</p>
+                <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Rokov</p>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      {/* Scroll Indicator - Hidden on mobile */}
+      <div className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2">
         <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 bg-black/10 p-1 backdrop-blur-sm">
           <motion.div
             animate={{ y: [0, 12, 0] }}
