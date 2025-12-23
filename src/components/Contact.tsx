@@ -29,7 +29,7 @@ const Contact = () => {
       title: 'Email',
       value: 'info@fastransfer.sk',
       href: 'mailto:info@fastransfer.sk',
-      description: 'Odpovieme do 2 hodín',
+      description: 'Odpovieme v čo najkratšom čase',
     },
     {
       Icon: ClockIcon,
