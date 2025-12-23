@@ -40,7 +40,7 @@ const BookingForm = () => {
 
 
       // Send data to PHP backend on Websupport (HTTP for testing until SSL cert is ready)
-      const response = await fetch('https://api.fastransfer.sk/booking.php', {
+      const response = await fetch('/api/booking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
