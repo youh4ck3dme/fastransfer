@@ -39,9 +39,13 @@ const BookingForm = () => {
     try {
 
 
-      // All booking logic handled by edge function (reCAPTCHA verification + DB insert + email)
-      const { data, error } = await supabase.functions.invoke('send-booking-notification', {
-        body: {
+      // Send data to PHP backend
+      const response = await fetch('/api/booking.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           customerName: formData.name,
           customerEmail: formData.email,
           customerPhone: formData.phone,
@@ -50,17 +54,13 @@ const BookingForm = () => {
           bookingDate: formData.date,
           bookingTime: formData.time,
           passengers: parseInt(formData.passengers),
-
-        },
+        }),
       });
 
-      if (error) {
-        throw new Error(error.message || 'Nepodarilo sa odoslať rezerváciu');
-      }
+      const data = await response.json();
 
-      // Check for error in response body
-      if (data?.error) {
-        throw new Error(data.error);
+      if (!response.ok) {
+        throw new Error(data.error || 'Nepodarilo sa odoslať rezerváciu');
       }
 
       toast({
