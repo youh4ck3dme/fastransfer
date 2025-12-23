@@ -81,11 +81,11 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="pb-8 sm:pb-12 text-center sm:text-left max-w-4xl mx-auto sm:mx-0 w-full space-y-6"
+          className="pb-8 sm:pb-12 text-center w-full space-y-6"
           style={{ transform: 'translateZ(20px)' }}
         >
           {/* CTA Buttons */}
-          <div className="flex flex-col gap-3 sm:flex-row justify-center sm:justify-start">
+          <div className="flex flex-col gap-3 sm:flex-row justify-center">
             <Button 
               variant="hero" 
               size="lg"
@@ -109,7 +109,7 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="flex justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8">
+          <div className="flex justify-center gap-4 sm:gap-6 md:gap-8">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
                 <Star className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
