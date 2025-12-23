@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -19,6 +20,7 @@ import {
 const BookingForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState({
     pickupLocation: '',
     dropoffLocation: '',
@@ -68,6 +70,8 @@ const BookingForm = () => {
         description: "Ozveme sa vám do 30 minút s potvrdením. Kontrolujte aj email.",
       });
 
+      setShowSuccessModal(true);
+
       // Reset form
       setFormData({
         pickupLocation: '',
@@ -96,6 +100,7 @@ const BookingForm = () => {
   };
 
   return (
+    <>
     <section id="booking" className="py-24 bg-background relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -300,6 +305,63 @@ const BookingForm = () => {
         </div>
       </div>
     </section>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-card w-full max-w-lg p-8 rounded-2xl shadow-gold border border-primary/20 relative"
+            >
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Zavrieť"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="text-center space-y-6">
+                <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center shadow-gold">
+                  <CheckCircle2 className="w-10 h-10 text-primary" />
+                </div>
+                
+                <div className="space-y-2">
+                  <h3 className="text-3xl font-bold font-serif text-foreground">Rezervácia Prijatá!</h3>
+                  <p className="text-muted-foreground text-lg">
+                    Ďakujeme za prejavenú dôveru.
+                  </p>
+                </div>
+
+                <div className="bg-secondary/30 p-4 rounded-xl border border-white/5">
+                  <p className="text-foreground font-medium">
+                    Čo sa bude diať teraz?
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Náš tím spracuje vašu požiadavku a <strong>do 30 minút</strong> vás budeme kontaktovať pre finálne potvrdenie.
+                  </p>
+                </div>
+
+                <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
+                  <Button variant="outline" onClick={() => setShowSuccessModal(false)} className="w-full sm:w-auto">
+                    Zavrieť
+                  </Button>
+                  <Button variant="hero" asChild className="w-full sm:w-auto">
+                    <a href="tel:+421911620520" className="flex items-center gap-2 justify-center">
+                      <PhoneIcon className="w-4 h-4" />
+                      Súrne? Zavolajte nám
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
