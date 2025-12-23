@@ -30,6 +30,7 @@ const BookingForm = () => {
     name: '',
     phone: '',
     email: '',
+    confirmRequest: '', // Honeypot
   });
 
 
@@ -56,6 +57,7 @@ const BookingForm = () => {
           bookingDate: formData.date,
           bookingTime: formData.time,
           passengers: parseInt(formData.passengers),
+          confirmRequest: formData.confirmRequest,
         }),
       });
 
@@ -82,6 +84,7 @@ const BookingForm = () => {
         name: '',
         phone: '',
         email: '',
+        confirmRequest: '',
       });
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : "Nepodarilo sa odoslať rezerváciu. Skúste to prosím znova.";
@@ -269,6 +272,20 @@ const BookingForm = () => {
                   required
                 />
               </div>
+            </div>
+
+            {/* Honeypot Field - Hidden for humans, visible for bots */}
+            <div className="opacity-0 absolute -z-10 h-0 w-0 overflow-hidden">
+              <label htmlFor="confirmRequest">Please leave this field blank</label>
+              <input
+                type="text"
+                id="confirmRequest"
+                name="confirmRequest"
+                value={formData.confirmRequest}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
             </div>
 
             {/* Submit */}

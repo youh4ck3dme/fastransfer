@@ -36,7 +36,19 @@ export default async function handler(
       date,
       time,
       passengers,
+      confirmRequest, // Honeypot field
     } = req.body;
+
+    // Honeypot check - Anti-spam protection
+    // If this field is filled, it's a bot submission
+    if (confirmRequest) {
+      console.warn('Spam detected via honeypot (confirmRequest filled). Blocking.');
+      // Return fake success to fool the bot
+      return res.status(200).json({
+        success: true,
+        message: 'Rezervácia bola úspešne prijatá',
+      });
+    }
 
     // Validate required fields
     if (!name || !email || !phone || !pickupLocation || !dropoffLocation || !date || !time || !passengers) {
@@ -45,10 +57,10 @@ export default async function handler(
 
     // Connect to MySQL database on Websupport
     const connection = await mysql.createConnection({
-      host: '37.9.175.195', // Websupport server IP
-      user: '6jbcai7w',
-      password: 'HesD@Bu2022',
-      database: '6jbcai7w',
+      host: process.env.DB_HOST || '37.9.175.195',
+      user: process.env.DB_USER || '6jbcai7w',
+      password: process.env.DB_PASS || 'HesD@Bu2022',
+      database: process.env.DB_NAME || '6jbcai7w',
     });
 
     // Insert booking into database
@@ -66,12 +78,12 @@ export default async function handler(
 
     // Send email notification
     const transporter = nodemailer.createTransport({
-      host: 'smtp.m1.websupport.sk',
-      port: 465,
+      host: process.env.SMTP_HOST || 'smtp.m1.websupport.sk',
+      port: parseInt(process.env.SMTP_PORT || '465'),
       secure: true,
       auth: {
-        user: 'info@fastransfer.sk',
-        pass: 'Fastransfer.sk1',
+        user: process.env.SMTP_USER || 'info@fastransfer.sk',
+        pass: process.env.SMTP_PASS || 'Fastransfer.sk1',
       },
     });
 
