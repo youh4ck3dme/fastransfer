@@ -9,25 +9,17 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
-import SplashScreen from "./components/SplashScreen";
 import PWAInstallBanner from "./components/PWAInstallBanner";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [showSplash, setShowSplash] = useState(true);
 
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <TooltipProvider>
-            {showSplash && (
-            <SplashScreen 
-              onLoadComplete={() => setShowSplash(false)} 
-              minDisplayTime={3000} 
-            />
-          )}
           <Toaster />
           <Sonner />
           <PWAInstallBanner />

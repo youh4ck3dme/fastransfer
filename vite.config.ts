@@ -15,7 +15,12 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "pwa-192x192.png", "pwa-512x512.png"],
+      includeAssets: ["favicon.ico", "favicon-16x16.png", "favicon-32x32.png", "pwa-192x192.png", "pwa-512x512.png", "hero-background.mp4"],
+      devOptions: {
+        enabled: true,
+        type: "module",
+        navigateFallback: "index.html"
+      },
       manifest: {
         name: "FastTransfer VIP",
         short_name: "FastTransfer",

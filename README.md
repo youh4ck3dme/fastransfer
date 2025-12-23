@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
+# FastTransfer VIP Preprava 🚗🏆
 
-## Project info
+Prémiová taxi služba a letiskové transfery so zameraním na VIP komfort, diskrétnosť a profesionalitu.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🌟 Hlavné Funkcie
 
-## How can I edit this code?
+- **VIP Rezervačný Systém**: Integrovaný formulár s automatickou notifikáciou cez SMTP.
+- **PWA (Progressive Web App)**: Aplikácia je plne inštalovateľná na iOS a Android s prémiovým bannerom.
+- **Ultra-Responzívny Dizajn**: Optimalizované pre mobilné zariadenia s vysokým rozlíšením (Retina).
+- **Luxury Look & Feel**: Zlaté gradienty, 4D parallax efekty a plynulé animácie.
+- **SEO Ready**: Optimalizované meta tagy, robots.txt a automaticky generovaná sitemap.xml.
 
-There are several ways of editing your application.
+## 🛠️ Použité Technológie
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite.
+- **Styling**: Tailwind CSS, Framer Motion (animácie).
+- **Backend**: Supabase Edge Functions (Deno).
+- **Email**: SMTP Client (Websupport integrácia).
+- **Deployment**: Vercel.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🚀 Rýchly Štart (Lokálne)
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Inštalácia**: `npm install`
+2. **Vývoj**: `npm run dev`
+3. **Build**: `npm run build`
 
-**Use your preferred IDE**
+## 📦 Produkčné Nasadenie
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Aplikácia je pripravená na nasadenie cez **Vercel** a **Supabase**.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+### 1. Supabase Secrets
+V Supabase Dashboarde nastavte nasledujúce premenné:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+SMTP_HOST=smtp.m1.websupport.sk
+SMTP_PORT=465
+SMTP_USERNAME=info@fastransfer.sk
+SMTP_PASSWORD=VašeHeslo
 ```
 
-**Edit a file directly in GitHub**
+### 2. Vercel Environment Variables
+V nastaveniach Vercel pridajte:
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📄 Licencia
+Všetky práva vyhradené © 2025 FastTransfer.
+dev & design by Pali Mrázek | #save4web
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)

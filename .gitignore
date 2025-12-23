@@ -7,18 +7,83 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+*.lcov
+.nyc_output
+
+# Production
+dist/
+dist-ssr/
+build/
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+!.vscode/settings.json
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Vercel
+.vercel
+
+# PWA
+dev-dist/
+
+# Supabase
+.supabase/
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+.tmp/
+.temp/
+tmp/
+temp/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Package manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.pnpm-store/
+
+# Misc
+*.cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Security - Tokens and credentials
+**/Token*
+*token*
+*.token
+credentials*
+*secret*
+*.key
+*.pem

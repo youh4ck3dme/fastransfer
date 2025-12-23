@@ -1,10 +1,27 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { SMTPClient } from "denomailer";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const SMTP_HOST = Deno.env.get("SMTP_HOST") || "smtp.m1.websupport.sk";
+const SMTP_PORT = parseInt(Deno.env.get("SMTP_PORT") || "465");
+const SMTP_USERNAME = Deno.env.get("SMTP_USERNAME") || "info@fastransfer.sk";
+const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD") || "Fastransfer.sk1";
 const RECAPTCHA_SECRET_KEY = Deno.env.get("RECAPTCHA_SECRET_KEY");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
+const smtpClient = new SMTPClient({
+  connection: {
+    hostname: SMTP_HOST,
+    port: SMTP_PORT,
+    tls: true,
+    auth: {
+      username: SMTP_USERNAME,
+      password: SMTP_PASSWORD,
+    },
+  },
+});
+
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -146,27 +163,22 @@ const verifyRecaptcha = async (token: string): Promise<{ success: boolean; score
 };
 
 const sendEmail = async (to: string[], subject: string, html: string) => {
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${RESEND_API_KEY}`,
-    },
-    body: JSON.stringify({
-      from: "FastTransfer VIP <onboarding@resend.dev>",
-      to,
-      subject,
-      html,
-    }),
-  });
-  
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Failed to send email: ${error}`);
+  console.log(`Sending email to ${to.join(", ")}: ${subject}`);
+  try {
+    await smtpClient.send({
+      from: `FastTransfer VIP <${SMTP_USERNAME}>`,
+      to: to,
+      subject: subject,
+      html: html,
+    });
+    console.log(`Email successfully sent to ${to.join(", ")}`);
+    return { success: true };
+  } catch (error) {
+    console.error(`Error sending email to ${to.join(", ")}:`, error);
+    throw error;
   }
-  
-  return response.json();
 };
+
 
 // Inline SVG icons as data URIs for email compatibility
 const icons = {
@@ -618,7 +630,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification to admin
     const adminEmailResponse = await sendEmail(
-      ["onboarding@resend.dev"],
+      [SMTP_USERNAME],
       `🚗 Nová rezervácia: ${booking.customerName}`,
       `
         <!DOCTYPE html>

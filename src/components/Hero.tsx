@@ -1,133 +1,135 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Clock, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-car.jpg';
+import { useEffect, useRef, useState } from 'react';
 
 const Hero = () => {
-  const stats = [
-    { icon: Star, value: '4.9', label: 'Hodnotenie' },
-    { icon: Clock, value: '24/7', label: 'Dostupnosť' },
-    { icon: Shield, value: '10+', label: 'Rokov skúseností' },
-  ];
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(console.log);
+    }
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Luxusné VIP vozidlo"
-          className="w-full h-full object-cover md:object-center"
-          style={{ objectPosition: 'calc(50% - 70px) center' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70 md:via-background/90 md:to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
+    <section className="relative h-screen w-full overflow-hidden bg-black">
+      {/* Video Background */}
+      <div className="absolute inset-0 h-screen w-full">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isVideoLoaded ? 1 : 0 }}
+          transition={{ duration: 1.5 }}
+          className="h-full w-full"
+        >
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            onLoadedData={() => setIsVideoLoaded(true)}
+            className="h-full w-full object-cover"
+          >
+            <source src="/hero-background.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
+        
+        {/* Simple dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-black/30" />
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-
-      <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
-        <div className="max-w-3xl">
+      {/* Content */}
+      <div className="relative z-10 flex h-full items-center px-4 py-8 sm:px-6 lg:px-8 pt-[120px]">
+        <div className="w-full max-w-4xl space-y-6 sm:space-y-8">
+          
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass-effect gold-border mb-8"
-          >
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-foreground/80 tracking-wide">Prémiová VIP preprava na Slovensku</span>
-          </motion.div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 backdrop-blur-sm border border-primary/20">
+            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-xs font-medium uppercase tracking-wider text-white/90">VIP Preprava</span>
+          </div>
 
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-8 tracking-tight"
-          >
-            Váš{' '}
-            <span className="text-gradient-gold font-extrabold">exkluzívny</span>
-            <br />
-            transfer s eleganciou
-          </motion.h1>
+          {/* Main Heading */}
+          <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+            Váš <span className="text-primary italic font-extrabold">exkluzívny</span> transfer
+          </h1>
 
           {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed"
-          >
-            Letiskové transfery, firemná preprava a VIP služby s maximálnym
-            komfortom. Profesionálni vodiči, luxusné vozidlá, diskrétnosť zaručená.
-          </motion.p>
+          <p className="max-w-xl text-base text-gray-300 sm:text-lg">
+            Letiskové transfery a VIP služby s maximálnym komfortom. 
+            Profesionálni vodiči a luxusné vozidlá.
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-5 mb-20"
-          >
-            <Button variant="hero" size="xl" asChild className="text-background font-bold">
-              <a href="#booking" className="flex items-center gap-2.5">
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Button 
+              variant="hero" 
+              size="lg"
+              asChild 
+              className="w-full font-bold uppercase tracking-wider sm:w-auto"
+            >
+              <a href="#booking" className="flex items-center justify-center gap-2">
                 Objednať Transfer
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="h-5 w-5" />
               </a>
             </Button>
-            <div className="neon-snake-border rounded-xl">
-              <Button variant="heroOutline" size="xl" asChild className="w-full bg-background font-semibold">
-                <a href="#pricing">Zobraziť cenník</a>
-              </Button>
-            </div>
-          </motion.div>
+            
+            <Button 
+              variant="heroOutline" 
+              size="lg"
+              asChild 
+              className="w-full bg-black/40 font-semibold uppercase tracking-wider backdrop-blur-sm sm:w-auto"
+            >
+              <a href="#pricing">Cenník</a>
+            </Button>
+          </div>
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap gap-8"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="flex items-center gap-3 group cursor-pointer"
-              >
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center gold-border transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold group-hover:border-primary/50">
-                  <stat.icon className="w-5 h-5 text-primary transition-transform duration-300 group-hover:scale-110" />
-                </div>
-                <div>
-                  <p className="text-2xl font-extrabold text-foreground tracking-tight">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-6 sm:flex sm:gap-8 sm:border-t-0 sm:pt-0">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
+                <Star className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-lg font-bold text-white">4.9</p>
+                <p className="text-xs text-gray-400 uppercase">Hodnotenie</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
+                <Clock className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-lg font-bold text-white">24/7</p>
+                <p className="text-xs text-gray-400 uppercase">Dostupnosť</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
+                <Shield className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-lg font-bold text-white">10+</p>
+                <p className="text-xs text-gray-400 uppercase">Rokov</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-7 h-11 rounded-full border-2 border-foreground/25 flex items-start justify-center p-2 backdrop-blur-sm">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 bg-black/10 p-1 backdrop-blur-sm">
           <motion.div
-            animate={{ y: [0, 14, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 bg-primary rounded-full shadow-lg shadow-primary/50"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="h-1.5 w-1.5 rounded-full bg-primary"
           />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

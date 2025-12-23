@@ -51,7 +51,7 @@ const Pricing = () => {
           <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
             Transparentné ceny
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
             Cenník
             <span className="text-gradient-gold"> populárnych trás</span>
           </h2>
