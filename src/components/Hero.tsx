@@ -41,11 +41,11 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex h-full items-center px-4 py-8 sm:px-6 lg:px-8 pt-[120px]">
-        <div className="w-full max-w-4xl space-y-6 sm:space-y-8">
+      <div className="relative z-10 flex h-full items-end sm:items-center justify-center px-4 pb-12 sm:pb-8 sm:px-6 lg:px-8 pt-[120px]">
+        <div className="w-full max-w-4xl space-y-6 sm:space-y-8 text-center sm:text-left">
           
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 backdrop-blur-sm border border-primary/20">
+          {/* Badge - Hidden on mobile */}
+          <div className="hidden sm:inline-flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 backdrop-blur-sm border border-primary/20">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             <span className="text-xs font-medium uppercase tracking-wider text-white/90">VIP Preprava</span>
           </div>
@@ -55,14 +55,15 @@ const Hero = () => {
             Váš <span className="text-primary italic font-extrabold">exkluzívny</span> transfer
           </h1>
 
-          {/* Description */}
-          <p className="max-w-xl text-base text-gray-300 sm:text-lg">
+          {/* Description - Hidden on mobile */}
+          <p className="hidden sm:block max-w-xl text-base text-gray-300 sm:text-lg">
             Letiskové transfery a VIP služby s maximálnym komfortom. 
             Profesionálni vodiči a luxusné vozidlá.
           </p>
 
+
           {/* CTA Buttons */}
-          <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex flex-col gap-4 sm:flex-row justify-center sm:justify-start">
             <Button 
               variant="hero" 
               size="lg"
@@ -85,8 +86,9 @@ const Hero = () => {
             </Button>
           </div>
 
+
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-6 sm:flex sm:gap-8 sm:border-t-0 sm:pt-0">
+          <div className="grid grid-cols-3 gap-4 pt-6 sm:flex sm:gap-8 sm:border-t-0 sm:pt-0 justify-center">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-primary/20">
                 <Star className="h-5 w-5 text-primary" />
