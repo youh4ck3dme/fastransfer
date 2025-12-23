@@ -8,7 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist .vercel node_modules/.cache && echo '✅ Build artefakty vymazané'",
+    "clean:all": "rm -rf dist .vercel node_modules/.cache node_modules && echo '✅ Všetky build artefakty a node_modules vymazané'",
+    "rebuild": "npm run clean && npm install && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
