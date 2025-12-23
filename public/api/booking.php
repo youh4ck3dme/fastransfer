@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // CONFIGURATION - UPDATE THESE VALUES
 // ===========================================
 
-// Database Configuration (PLACEHOLDERS - USER MUST UPDATE)
+// Database Configuration
 $db_host = 'localhost'; // Usually localhost on Websupport
-$db_name = 'YOUR_DB_NAME'; // TODO: Update with your database name
-$db_user = 'YOUR_DB_USER'; // TODO: Update with your database user
-$db_pass = 'YOUR_DB_PASSWORD'; // TODO: Update with your database password
+$db_name = '6jbcai7w'; // Database name
+$db_user = '6jbcai7w'; // Database user
+$db_pass = 'HesD@Bu2022'; // Database password
 
 // SMTP Configuration (VERIFIED)
 $smtp_host = 'smtp.m1.websupport.sk';
