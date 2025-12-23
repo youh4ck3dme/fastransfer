@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ModeToggle } from '@/components/mode-toggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -81,7 +80,6 @@ const Header = () => {
             <Button variant="hero" size="lg" asChild>
               <a href="#booking">Objednať</a>
             </Button>
-            <ModeToggle />
           </div>
 
           {/* Mobile Menu Button */}

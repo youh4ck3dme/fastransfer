@@ -87,3 +87,4 @@ credentials*
 *secret*
 *.key
 *.pem
+setup-env.sh
