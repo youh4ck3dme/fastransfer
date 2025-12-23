@@ -52,8 +52,8 @@ const Pricing = () => {
             Transparentné ceny
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Cenník
-            <span className="text-gradient-gold"> populárnych trás</span>
+            Cenník{' '}
+            <span className="text-gradient-gold">populárnych trás</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Fixné ceny bez skrytých poplatkov. Cena zahŕňa vozidlo, vodiča a všetky poplatky.
@@ -173,7 +173,7 @@ const Pricing = () => {
           className="max-w-3xl mx-auto"
         >
           <div className="rounded-2xl bg-gradient-card p-8 gold-border transition-all duration-300 hover:shadow-gold hover:border-primary/50">
-            <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6 text-center">
+            <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6 text-left">
               Čo je v cene
             </h3>
 

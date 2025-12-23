@@ -30,7 +30,7 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'glass-effect py-3' : 'bg-transparent py-6'
+        isScrolled || isMobileMenuOpen ? 'glass-effect py-3' : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -41,12 +41,12 @@ const Header = () => {
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 bg-gradient-gold rounded-xl flex items-center justify-center shadow-gold">
-              <span className="text-primary-foreground font-bold text-xl">F</span>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-gold rounded-xl flex items-center justify-center shadow-gold flex-shrink-0">
+              <span className="text-primary-foreground font-bold text-lg sm:text-xl">F</span>
             </div>
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-foreground tracking-tight">FastTransfer</h1>
-              <p className="text-xs text-muted-foreground tracking-[0.15em] uppercase font-medium">VIP Preprava</p>
+            <div>
+              <h1 className="text-base sm:text-lg font-bold text-foreground tracking-tight">FastTransfer</h1>
+              <p className="text-[10px] sm:text-xs text-muted-foreground tracking-[0.15em] uppercase font-medium">VIP Preprava</p>
             </div>
           </motion.a>
 

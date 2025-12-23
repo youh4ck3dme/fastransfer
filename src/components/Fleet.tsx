@@ -73,8 +73,8 @@ const Fleet = () => {
             Naša flotila
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Luxusné vozidlá pre
-            <span className="text-gradient-gold"> váš komfort</span>
+            Luxusné vozidlá pre{' '}
+            <span className="text-gradient-gold">váš komfort</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Všetky naše vozidlá sú najvyššej triedy, pravidelne servisované a udržiavané v bezchybnom stave.

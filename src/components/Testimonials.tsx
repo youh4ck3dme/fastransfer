@@ -45,8 +45,8 @@ const Testimonials = () => {
             Referencie
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Čo hovoria naši
-            <span className="text-gradient-gold"> klienti</span>
+            Čo hovoria naši{' '}
+            <span className="text-gradient-gold">klienti</span>
           </h2>
         </motion.div>
 

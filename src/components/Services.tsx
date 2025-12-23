@@ -67,8 +67,8 @@ const Services = () => {
             Naše služby
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-            Prémiová preprava pre
-            <span className="text-gradient-gold"> každú príležitosť</span>
+            <span className="text-white">Prémiová preprava</span>
+            <span className="text-primary"> pre každú príležitosť</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Od letiskových transferov po exkluzívne VIP služby. Vždy s maximálnym komfortom a profesionalitou.

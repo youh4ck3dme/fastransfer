@@ -15,7 +15,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'ui-sans-serif',
+  				'Sora', 'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
   				'Apple Color Emoji',
