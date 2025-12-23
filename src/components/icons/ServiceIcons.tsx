@@ -40,6 +40,16 @@ export const PlaneIcon = ({ className }: IconProps) => (
     <path d="M6 14.5L8 13.5" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.2" strokeLinecap="round"/>
     <path d="M18 14.5L16 13.5" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.2" strokeLinecap="round"/>
     <path d="M12 6V12" stroke="currentColor" strokeWidth="0.4" strokeOpacity="0.15" strokeLinecap="round"/>
+    {/* Enhanced details +50% */}
+    <circle cx="11" cy="7" r="0.3" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="13" cy="7" r="0.3" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="11" cy="9" r="0.25" fill="currentColor" fillOpacity="0.15"/>
+    <circle cx="13" cy="9" r="0.25" fill="currentColor" fillOpacity="0.15"/>
+    <path d="M9.5 12L10.5 13" stroke="currentColor" strokeWidth="0.25" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M14.5 12L13.5 13" stroke="currentColor" strokeWidth="0.25" strokeOpacity="0.15" strokeLinecap="round"/>
+    <ellipse cx="6" cy="14" rx="0.4" ry="0.2" fill="currentColor" fillOpacity="0.1"/>
+    <ellipse cx="18" cy="14" rx="0.4" ry="0.2" fill="currentColor" fillOpacity="0.1"/>
+    <path d="M10 18.5L12 19.5L14 18.5" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
   </svg>
 );
 
@@ -82,6 +92,16 @@ export const BuildingIcon = ({ className }: IconProps) => (
     <path d="M7 7L12 4L17 7" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" strokeLinecap="round"/>
     <rect x="8.3" y="9.3" width="0.8" height="0.8" rx="0.2" fill="currentColor" fillOpacity="0.3"/>
     <rect x="13.8" y="9.3" width="0.8" height="0.8" rx="0.2" fill="currentColor" fillOpacity="0.3"/>
+    {/* Enhanced details +50% */}
+    <rect x="8.3" y="13.3" width="0.8" height="0.8" rx="0.2" fill="currentColor" fillOpacity="0.25"/>
+    <rect x="13.8" y="13.3" width="0.8" height="0.8" rx="0.2" fill="currentColor" fillOpacity="0.25"/>
+    <path d="M10 18H14" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.2" strokeLinecap="round"/>
+    <circle cx="12" cy="18.5" r="0.4" fill="currentColor" fillOpacity="0.2"/>
+    <path d="M6 10H7" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M17 10H18" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M6 14H7" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M17 14H18" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <ellipse cx="12" cy="3.5" rx="0.8" ry="0.3" fill="currentColor" fillOpacity="0.15"/>
   </svg>
 );
 
@@ -121,6 +141,16 @@ export const GroupIcon = ({ className }: IconProps) => (
     <path d="M21 21V20C21 18.3431 19.6569 17 18 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7"/>
     <circle cx="12" cy="6.5" r="0.8" fill="currentColor" fillOpacity="0.25"/>
     <path d="M10 7.5C10 7.5 11 8.5 12 8.5C13 8.5 14 7.5 14 7.5" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" strokeLinecap="round"/>
+    {/* Enhanced details +50% */}
+    <circle cx="10.5" cy="6" r="0.35" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="13.5" cy="6" r="0.35" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="5" cy="8.5" r="0.4" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="19" cy="8.5" r="0.4" fill="currentColor" fillOpacity="0.2"/>
+    <path d="M8 17L9.5 16" stroke="currentColor" strokeWidth="0.25" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M16 17L14.5 16" stroke="currentColor" strokeWidth="0.25" strokeOpacity="0.15" strokeLinecap="round"/>
+    <ellipse cx="12" cy="19" rx="2" ry="0.4" fill="currentColor" fillOpacity="0.08"/>
+    <path d="M7 19H8" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
+    <path d="M16 19H17" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
   </svg>
 );
 
@@ -153,6 +183,17 @@ export const CalendarIcon = ({ className }: IconProps) => (
     <circle cx="8" cy="14" r="0.5" fill="currentColor" fillOpacity="0.3"/>
     <circle cx="12" cy="14" r="0.5" fill="currentColor" fillOpacity="0.3"/>
     <path d="M7 7H17" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.2"/>
+    {/* Enhanced details +50% */}
+    <circle cx="16" cy="14" r="0.4" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="8" cy="18" r="0.4" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="12" cy="18" r="0.4" fill="currentColor" fillOpacity="0.2"/>
+    <circle cx="16" cy="18" r="1" fill="currentColor" fillOpacity="0.15"/>
+    <path d="M5 12H6" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M18 12H19" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M5 16H6" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.12" strokeLinecap="round"/>
+    <path d="M18 16H19" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.12" strokeLinecap="round"/>
+    <ellipse cx="8" cy="3" rx="0.5" ry="0.8" fill="currentColor" fillOpacity="0.15"/>
+    <ellipse cx="16" cy="3" rx="0.5" ry="0.8" fill="currentColor" fillOpacity="0.15"/>
   </svg>
 );
 
@@ -193,6 +234,15 @@ export const ShieldIcon = ({ className }: IconProps) => (
     <circle cx="12" cy="5.3" r="0.5" fill="currentColor" fillOpacity="0.2"/>
     <path d="M6 7.5L12 4.5L18 7.5" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.25" strokeLinecap="round"/>
     <path d="M8 10L11 13" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.2" strokeLinecap="round"/>
+    {/* Enhanced details +50% */}
+    <path d="M13 12L15 10" stroke="currentColor" strokeWidth="0.4" strokeOpacity="0.15" strokeLinecap="round"/>
+    <circle cx="11" cy="12" r="0.4" fill="currentColor" fillOpacity="0.15"/>
+    <path d="M6 10V14" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
+    <path d="M18 10V14" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
+    <ellipse cx="12" cy="17" rx="2" ry="0.5" fill="currentColor" fillOpacity="0.08"/>
+    <path d="M8 16C9 17 10.5 18 12 18" stroke="currentColor" strokeWidth="0.25" strokeOpacity="0.1" strokeLinecap="round"/>
+    <path d="M16 16C15 17 13.5 18 12 18" stroke="currentColor" strokeWidth="0.25" strokeOpacity="0.1" strokeLinecap="round"/>
+    <circle cx="12" cy="11" r="0.3" fill="currentColor" fillOpacity="0.1"/>
   </svg>
 );
 
@@ -225,6 +275,16 @@ export const ClockIcon = ({ className }: IconProps) => (
     <circle cx="7" cy="18.5" r="0.4" fill="currentColor" fillOpacity="0.3"/>
     <circle cx="17" cy="18.5" r="0.4" fill="currentColor" fillOpacity="0.3"/>
     <path d="M12 7V6" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" strokeLinecap="round"/>
+    {/* Enhanced details +50% */}
+    <circle cx="5.5" cy="7" r="0.35" fill="currentColor" fillOpacity="0.25"/>
+    <circle cx="18.5" cy="7" r="0.35" fill="currentColor" fillOpacity="0.25"/>
+    <circle cx="5.5" cy="17" r="0.35" fill="currentColor" fillOpacity="0.25"/>
+    <circle cx="18.5" cy="17" r="0.35" fill="currentColor" fillOpacity="0.25"/>
+    <path d="M14 13L15.5 13.8" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.15" strokeLinecap="round"/>
+    <path d="M12 9V10" stroke="currentColor" strokeWidth="0.35" strokeOpacity="0.12" strokeLinecap="round"/>
+    <ellipse cx="12" cy="12" rx="6" ry="0.3" fill="currentColor" fillOpacity="0.04"/>
+    <path d="M6 12H7" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
+    <path d="M17 12H18" stroke="currentColor" strokeWidth="0.3" strokeOpacity="0.1" strokeLinecap="round"/>
   </svg>
 );
 
