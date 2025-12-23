@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "blackboxapp.blackboxagent",
-        "ms-python.debugpy"
+        "ms-python.debugpy",
+        "weiskopfsodefa.vercel-vscode-by-sodefa"
     ]
 }
