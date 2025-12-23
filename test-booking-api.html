@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Booking API - CORS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .loading {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Booking API - CORS</h1>
+        <p>Tento test overí, či CORS hlavičky fungujú správne pre booking API.</p>
+        
+        <button id="testOptions" onclick="testOptionsRequest()">1. Test OPTIONS (Preflight)</button>
+        <button id="testPost" onclick="testPostRequest()">2. Test POST (Booking)</button>
+        <button id="testBoth" onclick="testBoth()">3. Test Oboje</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'https://api.fastransfer.sk/booking.php';
+        const resultDiv = document.getElementById('result');
+
+        function showResult(message, type = 'info') {
+            resultDiv.className = type;
+            resultDiv.textContent = message;
+        }
+
+        function showLoading(message) {
+            resultDiv.className = 'loading';
+            resultDiv.textContent = '⏳ ' + message;
+        }
+
+        async function testOptionsRequest() {
+            showLoading('Testujem OPTIONS request (CORS preflight)...');
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const headers = {};
+                response.headers.forEach((value, key) => {
+                    headers[key] = value;
+                });
+
+                const result = `✅ OPTIONS Request Úspešný!
+
+Status: ${response.status} ${response.statusText}
+
+CORS Headers:
+${JSON.stringify({
+    'access-control-allow-origin': headers['access-control-allow-origin'],
+    'access-control-allow-methods': headers['access-control-allow-methods'],
+    'access-control-allow-headers': headers['access-control-allow-headers']
+}, null, 2)}
+
+Všetky Headers:
+${JSON.stringify(headers, null, 2)}`;
+
+                showResult(result, response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult(`❌ OPTIONS Request Zlyhal!\n\nChyba: ${error.message}\n\nSkontroluj konzolu (F12) pre viac detailov.`, 'error');
+                console.error('OPTIONS Error:', error);
+            }
+        }
+
+        async function testPostRequest() {
+            showLoading('Testujem POST request (Booking submission)...');
+            
+            const testData = {
+                name: 'Test CORS',
+                email: 'test@example.com',
+                phone: '+421900123456',
+                pickupLocation: 'Bratislava',
+                dropoffLocation: 'Vienna',
+                date: '2025-12-25',
+                time: '10:00',
+                passengers: '2'
+            };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                const responseData = await response.json();
+
+                const result = `${response.ok ? '✅' : '❌'} POST Request ${response.ok ? 'Úspešný' : 'Zlyhal'}!
+
+Status: ${response.status} ${response.statusText}
+
+Response Data:
+${JSON.stringify(responseData, null, 2)}
+
+Test Data:
+${JSON.stringify(testData, null, 2)}`;
+
+                showResult(result, response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult(`❌ POST Request Zlyhal!\n\nChyba: ${error.message}\n\nSkontroluj konzolu (F12) pre viac detailov.`, 'error');
+                console.error('POST Error:', error);
+            }
+        }
+
+        async function testBoth() {
+            await testOptionsRequest();
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await testPostRequest();
+        }
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            console.log('Test page loaded. Click buttons to test API.');
+            showResult('Klikni na tlačidlá pre testovanie API.', 'info');
+        });
+    </script>
+</body>
+</html>
