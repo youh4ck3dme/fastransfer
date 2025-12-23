@@ -14,14 +14,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative min-h-[100dvh] h-screen w-full overflow-hidden bg-black">
       {/* Video Background */}
-      <div className="absolute inset-0 h-screen w-full">
+      <div className="absolute inset-0 min-h-[100dvh] h-screen w-full">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: isVideoLoaded ? 1 : 0 }}
           transition={{ duration: 1.5 }}
-          className="h-full w-full"
+          className="h-full w-full min-h-[100dvh]"
         >
           <video
             ref={videoRef}
@@ -30,7 +30,7 @@ const Hero = () => {
             loop
             playsInline
             onLoadedData={() => setIsVideoLoaded(true)}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full min-h-[100dvh] object-cover"
           >
             <source src="/hero-background.mp4" type="video/mp4" />
           </video>
