@@ -39,8 +39,8 @@ const BookingForm = () => {
     try {
 
 
-      // Send data to PHP backend
-      const response = await fetch('/api/booking.php', {
+      // Send data to PHP backend on Websupport
+      const response = await fetch('https://fastransfer.sk/api/booking.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
