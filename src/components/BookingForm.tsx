@@ -313,7 +313,7 @@ const BookingForm = () => {
           >
             <span className="text-muted-foreground">Potrebujete okamžitú odpoveď?</span>
             <Button variant="heroOutline" asChild>
-              <a href="tel:+421911923573" className="flex items-center gap-2">
+              <a href="tel:+421902609940" className="flex items-center gap-2">
                 <PhoneIcon className="w-4 h-4" />
                 Zavolajte nám
               </a>
