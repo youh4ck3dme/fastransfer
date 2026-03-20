@@ -28,7 +28,11 @@ async function testRealEmail() {
 
     if (res.ok && data.success) {
       console.log('✅ API odpovedalo SUCCESS.');
-      console.log('📨 Skontroluj inbox info@fastransfer.sk - mal by prísť nový email!');
+      if (data.emailDelivery) {
+        console.log('📊 SMTP diagnostika:', data.emailDelivery);
+      }
+      console.log('📨 Skontroluj inbox info@fastransfer.sk - mal by prísť nový email.');
+      console.log('📨 Ak testuješ aj klienta, skontroluj aj jeho inbox/spam.');
     } else {
       console.error('❌ CHYBA API:', res.status, data);
     }

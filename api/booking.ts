@@ -55,12 +55,31 @@ export default async function handler(
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    const {
+      DB_HOST,
+      DB_USER,
+      DB_PASS,
+      DB_NAME,
+      SMTP_HOST,
+      SMTP_PORT,
+      SMTP_USER,
+      SMTP_PASS,
+    } = process.env;
+
+    if (!DB_HOST || !DB_USER || !DB_PASS || !DB_NAME) {
+      return res.status(500).json({ error: 'Database configuration missing' });
+    }
+
+    if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
+      return res.status(500).json({ error: 'SMTP configuration missing' });
+    }
+
     // Connect to MySQL database on Websupport
     const connection = await mysql.createConnection({
-      host: process.env.DB_HOST || '37.9.175.195',
-      user: process.env.DB_USER || '6jbcai7w',
-      password: process.env.DB_PASS || 'HesD@Bu2022',
-      database: process.env.DB_NAME || '6jbcai7w',
+      host: DB_HOST,
+      user: DB_USER,
+      password: DB_PASS,
+      database: DB_NAME,
     });
 
     // Insert booking into database
@@ -78,17 +97,17 @@ export default async function handler(
 
     // Send email notification
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.m1.websupport.sk',
-      port: parseInt(process.env.SMTP_PORT || '465'),
+      host: SMTP_HOST,
+      port: parseInt(SMTP_PORT, 10),
       secure: true,
       auth: {
-        user: process.env.SMTP_USER || 'info@fastransfer.sk',
-        pass: process.env.SMTP_PASS || 'Fastransfer.sk1',
+        user: SMTP_USER,
+        pass: SMTP_PASS,
       },
     });
 
     // Email to admin
-    await transporter.sendMail({
+    const adminEmailResult = await transporter.sendMail({
       from: 'info@fastransfer.sk',
       to: 'info@fastransfer.sk',
       subject: `Nová rezervácia - ${name}`,
@@ -106,7 +125,7 @@ export default async function handler(
     });
 
     // Email to customer
-    await transporter.sendMail({
+    const customerEmailResult = await transporter.sendMail({
       from: 'info@fastransfer.sk',
       to: email,
       subject: 'Potvrdenie rezervácie - FastTransfer',
@@ -127,6 +146,12 @@ export default async function handler(
     return res.status(200).json({
       success: true,
       message: 'Rezervácia bola úspešne prijatá',
+      emailDelivery: {
+        adminAccepted: adminEmailResult.accepted?.length ?? 0,
+        adminRejected: adminEmailResult.rejected?.length ?? 0,
+        customerAccepted: customerEmailResult.accepted?.length ?? 0,
+        customerRejected: customerEmailResult.rejected?.length ?? 0,
+      },
     });
   } catch (error) {
     console.error('Booking error:', error);
