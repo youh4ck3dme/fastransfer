@@ -292,8 +292,8 @@ const BookingForm = () => {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="text-muted-foreground text-sm">
                 <span>Alebo zavolajte priamo: </span>
-                <a href="tel:+421911620520" className="text-primary font-semibold hover:underline">
-                  +421 911 620 520
+                <a href="tel:+421902609940" className="text-primary font-semibold hover:underline">
+                  +421 902 609 940
                 </a>
               </div>
               <Button variant="hero" size="xl" type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
@@ -313,7 +313,7 @@ const BookingForm = () => {
           >
             <span className="text-muted-foreground">Potrebujete okamžitú odpoveď?</span>
             <Button variant="heroOutline" asChild>
-              <a href="tel:+421911620520" className="flex items-center gap-2">
+              <a href="tel:+421911923573" className="flex items-center gap-2">
                 <PhoneIcon className="w-4 h-4" />
                 Zavolajte nám
               </a>
@@ -367,7 +367,7 @@ const BookingForm = () => {
                     Zavrieť
                   </Button>
                   <Button variant="hero" asChild className="w-full sm:w-auto">
-                    <a href="tel:+421911620520" className="flex items-center gap-2 justify-center">
+                    <a href="tel:+421902609940" className="flex items-center gap-2 justify-center">
                       <PhoneIcon className="w-4 h-4" />
                       Súrne? Zavolajte nám
                     </a>
