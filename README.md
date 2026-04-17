@@ -28,21 +28,28 @@ Prémiová taxi služba a letiskové transfery so zameraním na VIP komfort, dis
 
 Aplikácia je pripravená na nasadenie cez **Vercel** a **Supabase**.
 
-### 1. Supabase Secrets
-V Supabase Dashboarde nastavte nasledujúce premenné:
-```sh
-SMTP_HOST=smtp.m1.websupport.sk
-SMTP_PORT=465
-SMTP_USERNAME=info@fastransfer.sk
-SMTP_PASSWORD=VašeHeslo
-```
-
-### 2. Vercel Environment Variables
-V nastaveniach Vercel pridajte:
+### 1. Vercel Environment Variables
+V nastaveniach Vercel (Project → Settings → Environment Variables) pridajte:
 - `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `MAIL_FROM` *(voliteľné, default = SMTP_USER)*
+- `ADMIN_EMAIL` *(voliteľné, default = SMTP_USER)*
+
+### 2. Supabase Secrets
+V Supabase Dashboarde (Edge Functions → Manage secrets) nastavte:
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+> ⚠️ Nikdy nepridávajte skutočné hodnoty hesiel do kódu alebo dokumentácie.
 
 ## 📄 Licencia
 Všetky práva vyhradené © 2025 FastTransfer.
 dev & design by Pali Mrázek | #save4web
-

@@ -5,10 +5,12 @@ import { SMTPClient } from "denomailer";
 const SMTP_HOST = Deno.env.get("SMTP_HOST") || "smtp.m1.websupport.sk";
 const SMTP_PORT = parseInt(Deno.env.get("SMTP_PORT") || "465");
 const SMTP_USERNAME = Deno.env.get("SMTP_USERNAME") || "info@fastransfer.sk";
-const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD") || "Fastransfer.sk1";
+// SMTP_PASSWORD must be set in Supabase Secrets dashboard — no hardcoded fallback
+const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD");
 const RECAPTCHA_SECRET_KEY = Deno.env.get("RECAPTCHA_SECRET_KEY");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
 
 const smtpClient = new SMTPClient({
   connection: {
