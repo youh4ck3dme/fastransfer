@@ -8,7 +8,7 @@ async function testRealEmail() {
   const payload = {
     name: 'Test Email Verify',
     email: 'info@fastransfer.sk', // Pošleme to adminovi na kontrolu
-    phone: '+421902609940',
+    phone: '+421911923573',
     pickupLocation: 'TEST LOCATION A',
     dropoffLocation: 'TEST LOCATION B',
     date: '2025-12-31',
