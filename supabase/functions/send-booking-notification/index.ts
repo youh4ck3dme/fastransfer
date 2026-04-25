@@ -593,7 +593,7 @@ const handler = async (req: Request): Promise<Response> => {
               
               <div class="cta-section">
                 <div class="cta-label">${icons.phone} Urgentné zmeny</div>
-                <div class="cta-phone">+421 902 609 940</div>
+                <div class="cta-phone">+421 911 923 573</div>
               </div>
               
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1);">

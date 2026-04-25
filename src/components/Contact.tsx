@@ -13,8 +13,8 @@ const Contact = () => {
     {
       Icon: PhoneIcon,
       title: 'Telefón 1',
-      value: '+421 902 609 940',
-      href: 'tel:+421902609940',
+      value: '+421 911 923 573',
+      href: 'tel:+421911923573',
       description: 'Hlavná linka',
     },
     {
@@ -113,9 +113,9 @@ const Contact = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="hero" size="xl" asChild>
-                  <a href="tel:+421902609940" className="flex items-center gap-2">
+                  <a href="tel:+421911923573" className="flex items-center gap-2">
                     <PhoneIcon className="w-5 h-5" />
-                    +421 902 609 940
+                    +421 911 923 573
                   </a>
                 </Button>
                 <Button variant="heroOutline" size="xl" asChild>

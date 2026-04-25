@@ -71,11 +71,11 @@ const Header = () => {
               <span className="text-sm">24/7</span>
             </div>
             <a
-              href="tel:+421902609940"
+              href="tel:+421911923573"
               className="flex items-center gap-2 text-foreground font-medium"
             >
               <Phone className="w-4 h-4 text-primary" />
-              <span>+421 902 609 940</span>
+              <span>+421 911 923 573</span>
             </a>
             <Button variant="hero" size="lg" asChild>
               <a href="#booking">Objednať</a>
@@ -118,11 +118,11 @@ const Header = () => {
               ))}
               <div className="pt-4 border-t border-border">
                 <a
-                  href="tel:+421902609940"
+                  href="tel:+421911923573"
                   className="flex items-center gap-2 text-primary font-semibold py-2"
                 >
                   <Phone className="w-5 h-5" />
-                  +421 902 609 940
+                  +421 911 923 573
                 </a>
                 <Button variant="hero" className="w-full mt-4" asChild>
                   <a href="#booking">Objednať Transfer</a>

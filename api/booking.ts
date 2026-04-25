@@ -197,7 +197,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Čas:</strong> ${data.time}</p>
         <p><strong>Počet cestujúcich:</strong> ${data.passengers}</p>
         <hr>
-        <p>Urgentné zmeny: <strong>+421 902 609 940</strong></p>
+        <p>Urgentné zmeny: <strong>+421 911 923 573</strong></p>
         <p>S pozdravom,<br>FastTransfer VIP Team</p>
       `,
     });
