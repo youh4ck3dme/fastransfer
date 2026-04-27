@@ -5,8 +5,8 @@ import {
   MailIcon, 
   LocationIcon, 
   ClockIcon, 
-  MessageIcon 
 } from '@/components/icons/ServiceIcons';
+import ContactForm from '@/components/ContactForm';
 
 const Contact = () => {
   const contactInfo = [
@@ -86,7 +86,7 @@ const Contact = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,37 +94,17 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-3xl mx-auto"
         >
-          <div className="rounded-2xl bg-gradient-card p-8 md:p-12 gold-border text-center relative overflow-hidden">
-            {/* Decorative */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
+          <ContactForm />
 
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-gold flex items-center justify-center mx-auto mb-6 shadow-gold">
-                <MessageIcon className="w-8 h-8 text-primary-foreground" />
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 tracking-tight">
-                Potrebujete okamžitú pomoc?
-              </h3>
-              <p className="text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">
-                Zavolajte nám a my vám okamžite pomôžeme s vaším transferom. Sme dostupní 24 hodín denne, 7 dní v týždni.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="hero" size="xl" asChild>
-                  <a href="tel:+421911923573" className="flex items-center gap-2">
-                    <PhoneIcon className="w-5 h-5" />
-                    +421 911 923 573
-                  </a>
-                </Button>
-                <Button variant="heroOutline" size="xl" asChild>
-                  <a href="mailto:info@fastransfer.sk">
-                    Napíšte email
-                  </a>
-                </Button>
-              </div>
-            </div>
+          {/* Quick Call CTA */}
+          <div className="mt-6 text-center">
+            <p className="text-muted-foreground text-sm mb-3">Alebo nás kontaktujte priamo:</p>
+            <Button variant="heroOutline" asChild>
+              <a href="tel:+421911923573" className="inline-flex items-center gap-2">
+                <PhoneIcon className="w-4 h-4" />
+                +421 911 923 573
+              </a>
+            </Button>
           </div>
         </motion.div>
       </div>
